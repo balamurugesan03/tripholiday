@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - Without Flight | Trip Holiday</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .booking-container {
+            max-width: 900px;
+            margin: 2rem auto;
+        }
+
+        .booking-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .booking-header h1 {
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .booking-header p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        .section-divider {
+            background: linear-gradient(90deg, transparent, var(--primary-orange), transparent);
+            height: 2px;
+            margin: 2rem 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #fff5ec, #ffe8d6);
+            border-left: 4px solid var(--primary-orange);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .guest-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1rem;
+        }
+
+        .meal-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem;
+            background: var(--light-gray);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .meal-checkbox:hover {
+            background: #fff5ec;
+            border-left: 3px solid var(--primary-orange);
+        }
+
+        .meal-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .activity-item {
+            background: white;
+            border: 2px solid var(--light-gray);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .activity-item:hover {
+            border-color: var(--primary-orange);
+            box-shadow: 0 5px 15px rgba(255, 127, 39, 0.2);
+        }
+
+        .submit-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--light-gray);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .guest-row {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="WhatsApp Image 2025-12-28 at 8.53.38 PM.jpeg" alt="Trip Holiday Logo" class="logo">
+                <span class="logo-text">TRIP HOLIDAY</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                    <li><a href="luxury-holiday.html">Luxury</a></li>
+                    <li><a href="international-holiday.html">International</a></li>
+                    <li><a href="india-holiday.html">India</a></li>
+                    <li><a href="pilgrimage.html">Pilgrimage</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="visa.html">Visa</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="booking-container container">
+            <div class="booking-card fade-in">
+                <div class="booking-header">
+                    <h1>Package Booking</h1>
+                    <p>Complete your booking details below</p>
+                    <div style="display: inline-block; background: var(--primary-orange); color: white; padding: 0.5rem 1.5rem; border-radius: 20px; margin-top: 1rem;">
+                        Without Flight Package
+                    </div>
+                </div>
+
+                <form id="bookingForm">
+                    <!-- Guest Profile Section -->
+                    <div class="section-divider"></div>
+                    <h2 style="color: var(--primary-orange); margin-bottom: 1.5rem;">👤 Guest Profile</h2>
+
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="grid grid-2">
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" class="form-control" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" class="form-control" placeholder="+91 1234567890" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea class="form-control" rows="3" placeholder="Your complete address"></textarea>
+                    </div>
+
+                    <!-- Adults & Children Age -->
+                    <div class="section-divider"></div>
+                    <h2 style="color: var(--primary-orange); margin-bottom: 1.5rem;">👥 Travelers Information</h2>
+
+                    <div class="info-box">
+                        <strong>Age Guidelines:</strong> Adults (18+ years) | Children (2-17 years) | Infants (0-2 years)
+                    </div>
+
+                    <div class="grid grid-2">
+                        <div class="form-group">
+                            <label>Number of Adults *</label>
+                            <input type="number" class="form-control" min="1" value="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Number of Children</label>
+                            <input type="number" class="form-control" min="0" value="0">
+                        </div>
+                    </div>
+
+                    <div id="adultsAgeSection">
+                        <h3 style="margin-bottom: 1rem; color: var(--black);">Adult Ages</h3>
+                        <div class="guest-row">
+                            <div class="form-group">
+                                <label>Adult 1 - Full Name *</label>
+                                <input type="text" class="form-control" placeholder="Full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Age *</label>
+                                <input type="number" class="form-control" min="18" placeholder="Age" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="childrenAgeSection" style="margin-top: 1.5rem;">
+                        <h3 style="margin-bottom: 1rem; color: var(--black);">Children Ages</h3>
+                        <div class="guest-row">
+                            <div class="form-group">
+                                <label>Child 1 - Full Name</label>
+                                <input type="text" class="form-control" placeholder="Full name">
+                            </div>
+                            <div class="form-group">
+                                <label>Age</label>
+                                <input type="number" class="form-control" min="0" max="17" placeholder="Age">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hotel Details -->
+                    <div class="section-divider"></div>
+                    <h2 style="color: var(--primary-orange); margin-bottom: 1.5rem;">🏨 Hotel Details</h2>
+
+                    <div class="form-group">
+                        <label>Preferred Hotel Category *</label>
+                        <select class="form-control" required>
+                            <option value="">Select hotel category</option>
+                            <option value="3star">3 Star Hotel</option>
+                            <option value="4star">4 Star Hotel</option>
+                            <option value="5star">5 Star Hotel</option>
+                            <option value="boutique">Boutique Hotel</option>
+                            <option value="resort">Resort</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-2">
+                        <div class="form-group">
+                            <label>Room Category *</label>
+                            <select class="form-control" required>
+                                <option value="">Select room type</option>
+                                <option value="standard">Standard Room</option>
+                                <option value="deluxe">Deluxe Room</option>
+                                <option value="suite">Suite</option>
+                                <option value="villa">Villa</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Number of Rooms *</label>
+                            <input type="number" class="form-control" min="1" value="1" required>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-2">
+                        <div class="form-group">
+                            <label>Check-in Date *</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Check-out Date *</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <!-- Car Details -->
+                    <div class="section-divider"></div>
+                    <h2 style="color: var(--primary-orange); margin-bottom: 1.5rem;">🚗 Car Details</h2>
+
+                    <div class="form-group">
+                        <label>Vehicle Type *</label>
+                        <select class="form-control" required>
+                            <option value="">Select vehicle type</option>
+                            <option value="sedan">Sedan (4 seater)</option>
+                            <option value="suv">SUV (6-7 seater)</option>
+                            <option value="tempo">Tempo Traveller (12 seater)</option>
+                            <option value="bus">Mini Bus (20+ seater)</option>
+                            <option value="luxury">Luxury Car</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Special Requirements</label>
+                        <textarea class="form-control" rows="2" placeholder="Any specific requirements for the vehicle"></textarea>
+                    </div>
+
+                    <!-- Sightseeing -->
+                    <div class="section-divider"></div>
+                    <h2 style="color: var(--primary-orange); margin-bottom: 1.5rem;">🗺️ Sightseeing Preferences</h2>
+
+                    <div class="form-group">
+                        <label>Preferred Destinations</label>
+                        <textarea class="form-control" rows="3" placeholder="List the places you'd like to visit"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" style="margin-right: 0.5rem;">
+                            Include guided tours
+                        </label>
+                    </div>
+
+                    <!-- Itinerary -->
+                    <div class="section-divider"></div>
+                    <h2 style="color: var(--primary-orange); margin-bottom: 1.5rem;">📅 Itinerary Overview</h2>
+
+                    <div class="info-box">
+                        <strong>Note:</strong> Detailed itinerary will be shared after booking confirmation based on your preferences
+                    </div>
+
+                    <div class="form-group">
+                        <label>Trip Duration (Days) *</label>
+                        <input type="number" class="form-control" min="1" placeholder="Number of days" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Special Interests</label>
+                        <textarea class="form-control" rows="3" placeholder="Adventure, Culture, Nature, Food, Photography, etc."></textarea>
+                    </div>
+
+                    <!-- Inclusions -->
+                    <div class="section-divider"></div>
+                    <h2 style="color: var(--primary-orange); margin-bottom: 1.5rem;">✅ Package Inclusions</h2>
+
+                    <div class="activity-item">
+                        <strong>✓</strong> Hotel Accommodation as per selected category
+                    </div>
+                    <div class="activity-item">
+                        <strong>✓</strong> Daily Breakfast
+                    </div>
+                    <div class="activity-item">
+                        <strong>✓</strong> Transportation as per itinerary
+                    </div>
+                    <div class="activity-item">
+                        <strong>✓</strong> Sightseeing as mentioned
+                    </div>
+                    <div class="activity-item">
+                        <strong>✓</strong> Driver allowances and toll charges
+                    </div>
+                    <div class="activity-item">
+                        <strong>✓</strong> All applicable taxes
+                    </div>
+
+                    <!-- Activities -->
+                    <div class="section-divider"></div>
+                    <h2 style="color: var(--primary-orange); margin-bottom: 1.5rem;">🎯 Additional Activities</h2>
+
+                    <div class="meal-checkbox">
+                        <input type="checkbox" id="activity1">
+                        <label for="activity1">Adventure Sports (Additional charges apply)</label>
+                    </div>
+                    <div class="meal-checkbox">
+                        <input type="checkbox" id="activity2">
+                        <label for="activity2">Cultural Shows & Events</label>
+                    </div>
+                    <div class="meal-checkbox">
+                        <input type="checkbox" id="activity3">
+                        <label for="activity3">Water Sports</label>
+                    </div>
+                    <div class="meal-checkbox">
+                        <input type="checkbox" id="activity4">
+                        <label for="activity4">Photography Tours</label>
+                    </div>
+
+                    <!-- Meals -->
+                    <div class="section-divider"></div>
+                    <h2 style="color: var(--primary-orange); margin-bottom: 1.5rem;">🍴 Meal Preferences</h2>
+
+                    <div class="grid grid-2">
+                        <div class="meal-checkbox">
+                            <input type="checkbox" id="breakfast" checked disabled>
+                            <label for="breakfast">Breakfast (Included)</label>
+                        </div>
+                        <div class="meal-checkbox">
+                            <input type="checkbox" id="lunch">
+                            <label for="lunch">Lunch (Optional - Add-on)</label>
+                        </div>
+                        <div class="meal-checkbox">
+                            <input type="checkbox" id="dinner">
+                            <label for="dinner">Dinner (Optional - Add-on)</label>
+                        </div>
+                        <div class="meal-checkbox">
+                            <input type="checkbox" id="snacks">
+                            <label for="snacks">Evening Snacks (Optional)</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 1rem;">
+                        <label>Dietary Restrictions</label>
+                        <textarea class="form-control" rows="2" placeholder="Vegetarian, Vegan, Allergies, etc."></textarea>
+                    </div>
+
+                    <!-- Complimentary -->
+                    <div class="section-divider"></div>
+                    <h2 style="color: var(--primary-orange); margin-bottom: 1.5rem;">🎁 Complimentary Services</h2>
+
+                    <div class="activity-item" style="background: linear-gradient(135deg, #fff5ec, #ffe8d6);">
+                        <strong>🎂</strong> Cake & Decorations for special occasions (Birthday, Anniversary - on request)
+                    </div>
+                    <div class="activity-item" style="background: linear-gradient(135deg, #fff5ec, #ffe8d6);">
+                        <strong>📸</strong> Welcome drink on arrival
+                    </div>
+                    <div class="activity-item" style="background: linear-gradient(135deg, #fff5ec, #ffe8d6);">
+                        <strong>🗺️</strong> Complimentary travel kit and destination guide
+                    </div>
+
+                    <!-- Important Notes -->
+                    <div class="section-divider"></div>
+                    <h2 style="color: var(--primary-orange); margin-bottom: 1.5rem;">📝 Important Notes</h2>
+
+                    <div class="info-box" style="background: linear-gradient(135deg, #fff3cd, #ffeaa7);">
+                        <ul style="margin-left: 1.5rem; line-height: 2;">
+                            <li>Please carry valid ID proofs for all travelers</li>
+                            <li>Children below 5 years usually travel free (without separate bed)</li>
+                            <li>Check-in time: 2:00 PM | Check-out time: 11:00 AM</li>
+                            <li>Early check-in/late check-out subject to availability</li>
+                            <li>Cancellation charges as per policy</li>
+                            <li>Final itinerary subject to confirmation</li>
+                            <li>Prices may vary during peak season</li>
+                        </ul>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 1.5rem;">
+                        <label>Special Requests / Additional Information</label>
+                        <textarea class="form-control" rows="4" placeholder="Any special requests or information you'd like to share"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" required style="margin-right: 0.5rem;">
+                            I agree to the <a href="terms.html" style="color: var(--primary-orange);">Terms & Conditions</a> and <a href="cancellation-policy.html" style="color: var(--primary-orange);">Cancellation Policy</a> *
+                        </label>
+                    </div>
+
+                    <!-- Submit Section -->
+                    <div class="submit-section">
+                        <a href="payment.html" class="btn btn-primary" style="padding: 1.2rem 3rem; font-size: 1.1rem;">
+                            Proceed to Payment
+                        </a>
+                        <p style="color: var(--text-gray); margin-top: 1rem;">
+                            Secure payment gateway | 100% safe & encrypted
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Trip Holiday</h3>
+                <p>Your trusted travel partner for creating unforgettable memories.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="packages.html">All Packages</a></li>
+                    <li><a href="blog.html">Travel Blog</a></li>
+                    <li><a href="visa.html">Visa Services</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Policies</h3>
+                <ul>
+                    <li><a href="cancellation-policy.html">Cancellation Policy</a></li>
+                    <li><a href="date-change-policy.html">Date Change Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@tripholiday.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Trip Holiday. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

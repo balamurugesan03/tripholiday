@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Payment | Trip Holiday</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .payment-container {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .payment-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-method {
+            border: 2px solid var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .payment-method:hover {
+            border-color: var(--primary-orange);
+            background: #fff5ec;
+        }
+
+        .payment-method input[type="radio"] {
+            width: 20px;
+            height: 20px;
+        }
+
+        .coupon-section {
+            background: linear-gradient(135deg, #fff5ec, #ffe8d6);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .price-breakdown {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .price-row.total {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-orange);
+            border-bottom: none;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="WhatsApp Image 2025-12-28 at 8.53.38 PM.jpeg" alt="Trip Holiday Logo" class="logo">
+                <span class="logo-text">TRIP HOLIDAY</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section with Unsplash Background -->
+        <section class="hero" style="position: relative; overflow: hidden; padding: 3rem 2rem;">
+            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1920&h=400&fit=crop" alt="Secure Payment" class="hero-bg" style="position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+            <div class="hero-content">
+                <h1 class="fade-in gradient-text">Secure Payment</h1>
+                <p class="fade-in typing-text" data-text="Complete your booking with safe and encrypted payment">Complete your booking with safe and encrypted payment</p>
+            </div>
+        </section>
+
+        <div class="payment-container container">
+            <div class="payment-card fade-in zoom-in">
+                <div style="text-align: center; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 2px solid var(--light-gray);">
+                    <h2 style="color: var(--black);">Payment Details</h2>
+                    <p style="color: var(--text-gray); margin-top: 0.5rem;">Your payment is secure and encrypted</p>
+                    <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
+                        <div style="background: #f5f5f5; padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.9rem;">🔒 SSL Secured</div>
+                        <div style="background: #f5f5f5; padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.9rem;">✓ PCI Compliant</div>
+                        <div style="background: #f5f5f5; padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.9rem;">🛡️ 100% Safe</div>
+                    </div>
+                </div>
+
+                <!-- Price Breakdown -->
+                <div class="price-breakdown slide-in-left">
+                    <h3 style="margin-bottom: 1rem; color: var(--black);">Booking Summary</h3>
+                    <div class="price-row fade-in">
+                        <span>Package: Dubai Luxury Escape</span>
+                        <span class="counter" data-target="150000">₹1,50,000</span>
+                    </div>
+                    <div class="price-row fade-in" style="animation-delay: 0.1s;">
+                        <span>Number of Travelers (2 Adults)</span>
+                        <span class="counter" data-target="300000">₹3,00,000</span>
+                    </div>
+                    <div class="price-row fade-in" style="animation-delay: 0.2s;">
+                        <span>Hotel Upgrade</span>
+                        <span class="counter" data-target="16000">₹16,000</span>
+                    </div>
+                    <div class="price-row fade-in" style="animation-delay: 0.3s;">
+                        <span>Additional Activities</span>
+                        <span class="counter" data-target="12000">₹12,000</span>
+                    </div>
+                    <div class="price-row fade-in" style="animation-delay: 0.4s;">
+                        <span>Taxes & Service Charges</span>
+                        <span class="counter" data-target="32000">₹32,000</span>
+                    </div>
+                    <div class="price-row fade-in" style="color: green; animation-delay: 0.5s;">
+                        <span>Discount Coupon Applied (WELCOME10)</span>
+                        <span>-₹35,000</span>
+                    </div>
+                    <div class="price-row total glow">
+                        <span>Total Amount</span>
+                        <span class="counter" data-target="320000">₹3,20,000</span>
+                    </div>
+                </div>
+
+                <!-- Coupon Section -->
+                <div class="coupon-section fade-in zoom-in">
+                    <h3 style="margin-bottom: 1rem; color: var(--primary-orange);">🎁 Have a Discount Coupon?</h3>
+                    <div style="display: flex; gap: 1rem;">
+                        <input type="text" class="form-control" placeholder="Enter coupon code" id="couponCode" style="flex: 1;">
+                        <button class="btn btn-primary pulse" onclick="applyCoupon()">Apply</button>
+                    </div>
+                    <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-gray);">
+                        <strong>Available Coupons:</strong><br>
+                        WELCOME10 - 10% off on first booking<br>
+                        SUMMER25 - 25% off on selected packages<br>
+                        FAMILY15 - 15% off on family packages
+                    </div>
+                </div>
+
+                <!-- Payment Methods -->
+                <div style="margin-top: 2rem;" class="slide-in-right">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--black);">Select Payment Method</h3>
+
+                    <div class="payment-method fade-in">
+                        <input type="radio" name="payment" id="creditCard" checked>
+                        <label for="creditCard" style="cursor: pointer; margin: 0; flex: 1;">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="font-size: 2rem;">💳</div>
+                                <div>
+                                    <strong>Credit / Debit Card</strong>
+                                    <div style="font-size: 0.85rem; color: var(--text-gray); margin-top: 0.2rem;">Visa, Mastercard, Amex, Rupay</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="payment-method fade-in" style="animation-delay: 0.1s;">
+                        <input type="radio" name="payment" id="upi">
+                        <label for="upi" style="cursor: pointer; margin: 0; flex: 1;">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="font-size: 2rem;">📱</div>
+                                <div>
+                                    <strong>UPI Payment</strong>
+                                    <div style="font-size: 0.85rem; color: var(--text-gray); margin-top: 0.2rem;">Google Pay, PhonePe, Paytm, BHIM</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="payment-method fade-in" style="animation-delay: 0.2s;">
+                        <input type="radio" name="payment" id="netbanking">
+                        <label for="netbanking" style="cursor: pointer; margin: 0; flex: 1;">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="font-size: 2rem;">🏦</div>
+                                <div>
+                                    <strong>Net Banking</strong>
+                                    <div style="font-size: 0.85rem; color: var(--text-gray); margin-top: 0.2rem;">All major banks supported</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="payment-method fade-in" style="animation-delay: 0.3s;">
+                        <input type="radio" name="payment" id="wallet">
+                        <label for="wallet" style="cursor: pointer; margin: 0; flex: 1;">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="font-size: 2rem;">👛</div>
+                                <div>
+                                    <strong>Digital Wallets</strong>
+                                    <div style="font-size: 0.85rem; color: var(--text-gray); margin-top: 0.2rem;">Paytm, PhonePe, Amazon Pay, Mobikwik</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="payment-method fade-in" style="animation-delay: 0.4s;">
+                        <input type="radio" name="payment" id="emi">
+                        <label for="emi" style="cursor: pointer; margin: 0; flex: 1;">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="font-size: 2rem;">💰</div>
+                                <div>
+                                    <strong>EMI Options</strong>
+                                    <div style="font-size: 0.85rem; color: var(--text-gray); margin-top: 0.2rem;">Convert to 3, 6, 9, 12 months EMI</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="payment-method fade-in" style="animation-delay: 0.5s;">
+                        <input type="radio" name="payment" id="payLater">
+                        <label for="payLater" style="cursor: pointer; margin: 0; flex: 1;">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="font-size: 2rem;">⏰</div>
+                                <div>
+                                    <strong>Pay Later / Partial Payment</strong>
+                                    <div style="font-size: 0.85rem; color: var(--text-gray); margin-top: 0.2rem;">Pay 30% now, rest before travel</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Card Details Form -->
+                <div id="cardDetails" class="fade-in zoom-in" style="margin-top: 2rem; padding: 2rem; background: var(--light-gray); border-radius: 12px;">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--black);">Enter Card Details</h3>
+                    <div class="form-group">
+                        <label>Card Number *</label>
+                        <input type="text" class="form-control" placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+                    <div class="form-group">
+                        <label>Cardholder Name *</label>
+                        <input type="text" class="form-control" placeholder="Name as on card">
+                    </div>
+                    <div class="grid grid-2">
+                        <div class="form-group">
+                            <label>Expiry Date *</label>
+                            <input type="text" class="form-control" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group">
+                            <label>CVV *</label>
+                            <input type="text" class="form-control" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms -->
+                <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #fff3cd, #ffeaa7); border-radius: 12px;">
+                    <div class="form-group">
+                        <label style="display: flex; align-items: start; gap: 0.5rem;">
+                            <input type="checkbox" required style="margin-top: 0.3rem;">
+                            <span>I agree to the <a href="terms.html" style="color: var(--primary-orange);">Terms & Conditions</a>, <a href="cancellation-policy.html" style="color: var(--primary-orange);">Cancellation Policy</a>, and understand that this payment is for booking confirmation. *</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: start; gap: 0.5rem;">
+                            <input type="checkbox">
+                            <span>Send me exclusive deals and travel updates via email/SMS</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div style="margin-top: 2rem; text-align: center;" class="fade-in zoom-in">
+                    <button class="btn btn-primary pulse glow" style="padding: 1.2rem 3rem; font-size: 1.1rem; width: 100%;" onclick="processPayment()">
+                        🔒 Pay Securely ₹3,20,000
+                    </button>
+                    <p style="color: var(--text-gray); margin-top: 1rem; font-size: 0.9rem;">
+                        Your payment information is encrypted and secure<br>
+                        You will receive booking confirmation via email
+                    </p>
+                </div>
+
+                <!-- Security Info -->
+                <div class="fade-in card-3d" style="margin-top: 2rem; padding: 1.5rem; border: 2px solid var(--light-gray); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🛡️</div>
+                    <h4 style="color: var(--black); margin-bottom: 0.5rem;">Your Payment is 100% Secure</h4>
+                    <p style="color: var(--text-gray); font-size: 0.9rem;">
+                        We use industry-standard encryption to protect your payment information.<br>
+                        Your card details are never stored on our servers.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Trip Holiday</h3>
+                <p>Your trusted travel partner for creating unforgettable memories.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="packages.html">All Packages</a></li>
+                    <li><a href="blog.html">Travel Blog</a></li>
+                    <li><a href="visa.html">Visa Services</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Policies</h3>
+                <ul>
+                    <li><a href="cancellation-policy.html">Cancellation Policy</a></li>
+                    <li><a href="date-change-policy.html">Date Change Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@tripholiday.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Trip Holiday. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function applyCoupon() {
+            const code = document.getElementById('couponCode').value.toUpperCase();
+            if (code === 'WELCOME10' || code === 'SUMMER25' || code === 'FAMILY15') {
+                if (typeof TripHoliday !== 'undefined' && TripHoliday.showNotification) {
+                    TripHoliday.showNotification('Coupon applied successfully!', 'success');
+                } else {
+                    alert('Coupon applied successfully!');
+                }
+            } else {
+                if (typeof TripHoliday !== 'undefined' && TripHoliday.showNotification) {
+                    TripHoliday.showNotification('Invalid coupon code', 'error');
+                } else {
+                    alert('Invalid coupon code');
+                }
+            }
+        }
+
+        function processPayment() {
+            if (typeof TripHoliday !== 'undefined' && TripHoliday.showNotification) {
+                TripHoliday.showNotification('Payment processing... Booking confirmed!', 'success');
+            } else {
+                alert('Payment processing...\n\nThis is a demo. In production, this would connect to a payment gateway.\n\nBooking confirmed! Check your email for details.');
+            }
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
