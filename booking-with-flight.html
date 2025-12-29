@@ -337,14 +337,19 @@
 
                     <div class="form-group">
                         <label>Vehicle Type *</label>
-                        <select class="form-control" required>
-                            <option value="">Select vehicle type</option>
-                            <option value="sedan">Sedan (4 seater)</option>
-                            <option value="suv">SUV (6-7 seater)</option>
-                            <option value="tempo">Tempo Traveller (12 seater)</option>
-                            <option value="bus">Mini Bus (20+ seater)</option>
-                            <option value="luxury">Luxury Car</option>
+                        <select class="form-control" id="vehicleType" required>
+                            <option value="" data-price="0">Select vehicle type</option>
+                            <option value="sedan" data-price="0">Sedan (4 seater)</option>
+                            <option value="suv" data-price="3000">SUV (6-7 seater) - ₹3,000 extra</option>
+                            <option value="tempo" data-price="5000">Tempo Traveller (12 seater) - ₹5,000 extra</option>
+                            <option value="bus" data-price="8000">Mini Bus (20+ seater) - ₹8,000 extra</option>
+                            <option value="luxury" data-price="15000">Luxury Car - ₹15,000 extra</option>
                         </select>
+                    </div>
+
+                    <div id="vehiclePriceInfo" style="display: none; background: linear-gradient(135deg, #e8f5e9, #c8e6c9); padding: 1rem; border-radius: 8px; margin-top: 1rem; border-left: 4px solid #4caf50;">
+                        <strong style="color: #2e7d32;">Additional Vehicle Charge:</strong>
+                        <span id="vehiclePriceAmount" style="font-size: 1.3rem; color: #1b5e20; font-weight: bold; margin-left: 0.5rem;">₹0</span>
                     </div>
 
                     <div class="form-group">
@@ -548,5 +553,24 @@
             <p>&copy; 2025 Trip Holiday. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Vehicle Type Price Calculator
+        const vehicleTypeSelect = document.getElementById('vehicleType');
+        const vehiclePriceInfo = document.getElementById('vehiclePriceInfo');
+        const vehiclePriceAmount = document.getElementById('vehiclePriceAmount');
+
+        vehicleTypeSelect.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const price = parseInt(selectedOption.getAttribute('data-price')) || 0;
+
+            if (price > 0) {
+                vehiclePriceInfo.style.display = 'block';
+                vehiclePriceAmount.textContent = '₹' + price.toLocaleString('en-IN');
+            } else {
+                vehiclePriceInfo.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>

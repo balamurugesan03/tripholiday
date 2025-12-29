@@ -6,22 +6,183 @@
     <title>Travel Packages | Trip Holiday</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        :root {
+            --primary-orange: #ff7f27;
+            --dark-orange: #e56a1a;
+            --light-orange: #ffa347;
+            --black: #1a1a1a;
+            --text-gray: #666;
+            --light-gray: #f0f0f0;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background: var(--white);
+        }
+
+
+    
+
+
+
+        /* Main Content Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
         .packages-hero {
             background: linear-gradient(135deg, rgba(26, 26, 26, 0.8), rgba(255, 127, 39, 0.9));
             color: white;
-            padding: 4rem 2rem;
+            padding: 6rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .packages-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(255, 127, 39, 0.8) 0%, 
+                rgba(255, 127, 39, 0.6) 25%, 
+                rgba(26, 26, 26, 0.8) 100%);
+            z-index: 1;
+        }
+
+        .packages-hero .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .packages-hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease;
+        }
+
+        .typing-text {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .zoom-in {
+            animation: zoomIn 0.6s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .filter-section h2 {
+            color: var(--black);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-group {
             margin-bottom: 1rem;
         }
 
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(255, 127, 39, 0.1);
+        }
+
+        /* Sort Buttons */
         .sort-button {
-            padding: 0.8rem 1.5rem;
+            padding: 0.8rem 2rem;
             background: white;
             border: 2px solid var(--primary-orange);
             color: var(--primary-orange);
@@ -30,19 +191,47 @@
             font-weight: 600;
             transition: all 0.3s ease;
             margin: 0.5rem;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sort-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 127, 39, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .sort-button:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .sort-button:hover, .sort-button.active {
             background: var(--primary-orange);
             color: white;
             transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 127, 39, 0.3);
         }
 
+        .sort-button.active {
+            background: var(--primary-orange);
+            color: white;
+        }
+
+        /* Package Grid */
         .package-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 2.5rem;
+            margin: 3rem 0;
         }
 
         .package-item {
@@ -52,6 +241,13 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             transition: all 0.4s ease;
             cursor: pointer;
+            position: relative;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .package-item.visible {
+            opacity: 1;
         }
 
         .package-item:hover {
@@ -59,11 +255,18 @@
             box-shadow: 0 20px 60px rgba(255, 127, 39, 0.3);
         }
 
-        .package-img {
+        .package-img-container {
             width: 100%;
             height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .package-img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease;
+            transition: transform 0.6s ease;
         }
 
         .package-item:hover .package-img {
@@ -88,12 +291,36 @@
             border-radius: 15px;
             font-size: 0.75rem;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag:nth-child(2) {
+            background: linear-gradient(135deg, #4a6fa5, #2c4d80);
+        }
+
+        .package-body h3 {
+            color: var(--black);
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .package-body p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
         }
 
         .duration {
             color: var(--text-gray);
             font-size: 0.9rem;
-            margin-top: 0.5rem;
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .price-row {
@@ -111,19 +338,436 @@
             font-weight: bold;
         }
 
-        @media (max-width: 768px) {
+        .price::before {
+            content: '₹';
+            font-size: 1.2rem;
+            margin-right: 2px;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-orange), var(--dark-orange));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 127, 39, 0.3);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s ease;
+            overflow-y: auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 3rem;
+            border-radius: 25px;
+            max-width: 900px;
+            position: relative;
+            animation: slideDown 0.4s ease;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-size: 2rem;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-orange);
+            transform: rotate(90deg);
+            background: rgba(255, 127, 39, 0.1);
+        }
+
+        .flight-options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .flight-option-card {
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border: 2px solid var(--light-gray);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flight-option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 127, 39, 0.1), rgba(255, 127, 39, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .flight-option-card:hover::before {
+            opacity: 1;
+        }
+
+        .flight-option-card:hover {
+            border-color: var(--primary-orange);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(255, 127, 39, 0.3);
+        }
+
+        .option-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .flight-option-card:hover .option-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .flight-option-card h3 {
+            color: var(--black);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .flight-option-card p {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .option-features {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .option-features li {
+            padding: 0.5rem 0;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .option-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-orange);
+            font-weight: bold;
+        }
+
+        .flight-option-card .btn {
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, var(--black), #2c2c2c);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-orange);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .footer-section p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-orange);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
             .package-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .flight-options-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            
+            .packages-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .typing-text {
+                font-size: 1.2rem;
+            }
+            
+            .filter-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .package-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .sort-button {
+                display: block;
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+            
+            .modal-content {
+                margin: 10% 1rem;
+                padding: 2rem 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
 
+        @media (max-width: 480px) {
+            .packages-hero {
+                padding: 4rem 1rem;
+            }
+            
             .packages-hero h1 {
                 font-size: 2rem;
             }
+            
+            .typing-text {
+                font-size: 1rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .package-body {
+                padding: 1rem;
+            }
+            
+            .price {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--light-gray);
+            border-top: 5px solid var(--primary-orange);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Badge for Popular Packages */
+        .popular-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Price Counter Animation */
+        .counter {
+            display: inline-block;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-orange);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(255, 127, 39, 0.4);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 127, 39, 0.6);
         }
     </style>
 </head>
 <body>
-    <header>
+     <header>
         <div class="header-container">
             <div class="logo-container">
                 <img src="WhatsApp Image 2025-12-28 at 8.53.38 PM.jpeg" alt="Trip Holiday Logo" class="logo">
@@ -145,18 +789,22 @@
     </header>
 
     <main>
-        <section class="packages-hero" style="position: relative; overflow: hidden;">
-            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&h=600&fit=crop" alt="Travel Packages" class="hero-bg" style="position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+        <section class="packages-hero">
             <div class="hero-content">
                 <h1 class="gradient-text">Explore Our Packages</h1>
-                <p class="typing-text" data-text="Find your perfect holiday destination">Find your perfect holiday destination</p>
+                <p class="typing-text">Find your perfect holiday destination</p>
+                <div style="margin-top: 2rem;">
+                    <button class="btn btn-primary" onclick="window.location.href='#packagesGrid'" style="padding: 1rem 2.5rem; font-size: 1.1rem;">
+                        Browse Packages
+                    </button>
+                </div>
             </div>
         </section>
 
         <div class="container">
             <!-- Filter Section -->
-            <section class="filter-section fade-in" style="margin-top: 2rem;">
-                <h2 style="color: var(--black); margin-bottom: 1.5rem;">Filter Packages</h2>
+            <section class="filter-section fade-in">
+                <h2>Find Your Perfect Trip</h2>
                 <div class="filter-grid">
                     <div class="form-group">
                         <label>Package Type</label>
@@ -196,258 +844,272 @@
                         </select>
                     </div>
                 </div>
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <button class="btn btn-primary" onclick="resetFilters()" style="padding: 0.8rem 2rem;">
+                        Reset Filters
+                    </button>
+                </div>
             </section>
 
             <!-- Sort Section -->
             <section style="margin-top: 2rem; text-align: center;" class="fade-in">
                 <h3 style="color: var(--black); margin-bottom: 1rem;">Sort By</h3>
                 <div>
-                    <button class="sort-button active pulse" onclick="sortPackages('popular')">Popular</button>
+                    <button class="sort-button active" onclick="sortPackages('popular')">Popular</button>
                     <button class="sort-button" onclick="sortPackages('low-price')">Low Price</button>
                     <button class="sort-button" onclick="sortPackages('high-price')">High Price</button>
                     <button class="sort-button" onclick="sortPackages('duration')">Duration</button>
                 </div>
             </section>
 
+            <!-- Loading Spinner -->
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner"></div>
+                <p style="margin-top: 1rem; color: var(--text-gray);">Loading packages...</p>
+            </div>
+
             <!-- Packages Grid -->
             <section style="margin-top: 3rem; margin-bottom: 4rem;">
                 <div class="package-grid" id="packagesGrid">
                     <!-- Package 1: Dubai -->
-                    <div class="package-item fade-in zoom-in" data-type="luxury" data-destination="international" data-travel="family" data-price="150000" data-duration="7">
-                        <div style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&h=600&fit=crop" alt="Dubai" class="package-img">
+                    <div class="package-item fade-in zoom-in" data-type="luxury" data-destination="international" data-travel="family" data-price="150000" data-duration="7" data-popular="true">
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="package-img-container">
+                            <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&h=600&fit=crop&auto=format" alt="Dubai Luxury Escape" class="package-img">
                         </div>
                         <div class="package-body">
                             <div class="package-tags">
                                 <span class="tag">Luxury</span>
                                 <span class="tag">International</span>
                             </div>
-                            <h3 style="color: var(--black); margin-bottom: 0.5rem;">Dubai Luxury Escape</h3>
-                            <p style="color: var(--text-gray); font-size: 0.95rem;">Experience the luxury of Dubai with 5-star hotels, desert safari, and Burj Khalifa</p>
+                            <h3>Dubai Luxury Escape</h3>
+                            <p>Experience the luxury of Dubai with 5-star hotels, desert safari, and Burj Khalifa</p>
                             <div class="duration">⏱️ 7 Days / 6 Nights</div>
                             <div class="price-row">
                                 <div class="price counter" data-target="150000">₹1,50,000</div>
-                                <a href="booking-with-flight.html" class="btn btn-primary">Book Now</a>
+                                <button onclick="openFlightModal('Dubai Luxury Escape', 150000)" class="btn btn-primary">Book Now</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Package 2: Goa -->
                     <div class="package-item fade-in zoom-in" data-type="premium" data-destination="india" data-travel="couple" data-price="37000" data-duration="5" style="animation-delay: 0.1s;">
-                        <div style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&h=600&fit=crop" alt="Goa" class="package-img">
+                        <div class="package-img-container">
+                            <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&h=600&fit=crop&auto=format" alt="Goa Beach Paradise" class="package-img">
                         </div>
                         <div class="package-body">
                             <div class="package-tags">
                                 <span class="tag">Premium</span>
                                 <span class="tag">India</span>
                             </div>
-                            <h3 style="color: var(--black); margin-bottom: 0.5rem;">Goa Beach Paradise</h3>
-                            <p style="color: var(--text-gray); font-size: 0.95rem;">Relax on pristine beaches, enjoy water sports, and explore Portuguese heritage</p>
+                            <h3>Goa Beach Paradise</h3>
+                            <p>Relax on pristine beaches, enjoy water sports, and explore Portuguese heritage</p>
                             <div class="duration">⏱️ 5 Days / 4 Nights</div>
                             <div class="price-row">
                                 <div class="price counter" data-target="37000">₹37,000</div>
-                                <a href="booking-without-flight.html" class="btn btn-primary">Book Now</a>
+                                <button onclick="openFlightModal('Goa Beach Paradise', 37000)" class="btn btn-primary">Book Now</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Package 3: Maldives -->
-                    <div class="package-item fade-in zoom-in" data-type="luxury" data-destination="international" data-travel="couple" data-price="205000" data-duration="6" style="animation-delay: 0.2s;">
-                        <div style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop" alt="Maldives" class="package-img">
+                    <div class="package-item fade-in zoom-in" data-type="luxury" data-destination="international" data-travel="couple" data-price="205000" data-duration="6" style="animation-delay: 0.2s;" data-popular="true">
+                        <div class="popular-badge">Honeymoon Special</div>
+                        <div class="package-img-container">
+                            <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&h=600&fit=crop&auto=format" alt="Maldives Honeymoon Special" class="package-img">
                         </div>
                         <div class="package-body">
                             <div class="package-tags">
                                 <span class="tag">Luxury</span>
                                 <span class="tag">Honeymoon</span>
                             </div>
-                            <h3 style="color: var(--black); margin-bottom: 0.5rem;">Maldives Honeymoon Special</h3>
-                            <p style="color: var(--text-gray); font-size: 0.95rem;">Overwater villas, private beaches, and romantic dining under the stars</p>
+                            <h3>Maldives Honeymoon Special</h3>
+                            <p>Overwater villas, private beaches, and romantic dining under the stars</p>
                             <div class="duration">⏱️ 6 Days / 5 Nights</div>
                             <div class="price-row">
                                 <div class="price counter" data-target="205000">₹2,05,000</div>
-                                <a href="booking-with-flight.html" class="btn btn-primary glow">Book Now</a>
+                                <button onclick="openFlightModal('Maldives Honeymoon Special', 205000)" class="btn btn-primary">Book Now</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Package 4: Varanasi -->
                     <div class="package-item fade-in zoom-in" data-type="basic" data-destination="pilgrimage" data-travel="family" data-price="23000" data-duration="4" style="animation-delay: 0.3s;">
-                        <div style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1564146147557-934168b87947?w=800&h=600&fit=crop" alt="Varanasi" class="package-img">
+                        <div class="package-img-container">
+                            <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800&h=600&fit=crop&auto=format" alt="Varanasi Spiritual Journey" class="package-img">
                         </div>
                         <div class="package-body">
                             <div class="package-tags">
                                 <span class="tag">Pilgrimage</span>
                                 <span class="tag">Spiritual</span>
                             </div>
-                            <h3 style="color: var(--black); margin-bottom: 0.5rem;">Varanasi Spiritual Journey</h3>
-                            <p style="color: var(--text-gray); font-size: 0.95rem;">Experience the spiritual heart of India with Ganga Aarti and temple visits</p>
+                            <h3>Varanasi Spiritual Journey</h3>
+                            <p>Experience the spiritual heart of India with Ganga Aarti and temple visits</p>
                             <div class="duration">⏱️ 4 Days / 3 Nights</div>
                             <div class="price-row">
                                 <div class="price counter" data-target="23000">₹23,000</div>
-                                <a href="booking-without-flight.html" class="btn btn-primary">Book Now</a>
+                                <button onclick="openFlightModal('Varanasi Spiritual Journey', 23000)" class="btn btn-primary">Book Now</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Package 5: Kashmir -->
                     <div class="package-item fade-in zoom-in" data-type="premium" data-destination="india" data-travel="family" data-price="70000" data-duration="7" style="animation-delay: 0.4s;">
-                        <div style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="Kashmir" class="package-img">
+                        <div class="package-img-container">
+                            <img src="https://images.unsplash.com/photo-1593693399740-5c85fae6d6c5?w=800&h=600&fit=crop&auto=format" alt="Kashmir Paradise on Earth" class="package-img">
                         </div>
                         <div class="package-body">
                             <div class="package-tags">
                                 <span class="tag">Premium</span>
                                 <span class="tag">India</span>
                             </div>
-                            <h3 style="color: var(--black); margin-bottom: 0.5rem;">Kashmir - Paradise on Earth</h3>
-                            <p style="color: var(--text-gray); font-size: 0.95rem;">Houseboat stay, Shikara ride, and breathtaking valley views</p>
+                            <h3>Kashmir - Paradise on Earth</h3>
+                            <p>Houseboat stay, Shikara ride, and breathtaking valley views</p>
                             <div class="duration">⏱️ 7 Days / 6 Nights</div>
                             <div class="price-row">
                                 <div class="price counter" data-target="70000">₹70,000</div>
-                                <a href="booking-without-flight.html" class="btn btn-primary">Book Now</a>
+                                <button onclick="openFlightModal('Kashmir Paradise on Earth', 70000)" class="btn btn-primary">Book Now</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Package 6: Thailand -->
                     <div class="package-item fade-in zoom-in" data-type="premium" data-destination="international" data-travel="buddy" data-price="78000" data-duration="6" style="animation-delay: 0.5s;">
-                        <div style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&h=600&fit=crop" alt="Thailand" class="package-img">
+                        <div class="package-img-container">
+                            <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?w=800&h=600&fit=crop&auto=format" alt="Thailand Adventure Tour" class="package-img">
                         </div>
                         <div class="package-body">
                             <div class="package-tags">
                                 <span class="tag">Premium</span>
                                 <span class="tag">Adventure</span>
                             </div>
-                            <h3 style="color: var(--black); margin-bottom: 0.5rem;">Thailand Adventure Tour</h3>
-                            <p style="color: var(--text-gray); font-size: 0.95rem;">Explore Bangkok, Pattaya, and Phuket with exciting activities</p>
+                            <h3>Thailand Adventure Tour</h3>
+                            <p>Explore Bangkok, Pattaya, and Phuket with exciting activities</p>
                             <div class="duration">⏱️ 6 Days / 5 Nights</div>
                             <div class="price-row">
                                 <div class="price counter" data-target="78000">₹78,000</div>
-                                <a href="booking-with-flight.html" class="btn btn-primary">Book Now</a>
+                                <button onclick="openFlightModal('Thailand Adventure Tour', 78000)" class="btn btn-primary">Book Now</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Package 7: Rajasthan -->
                     <div class="package-item fade-in zoom-in" data-type="luxury" data-destination="india" data-travel="family" data-price="100000" data-duration="8" style="animation-delay: 0.6s;">
-                        <div style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&h=600&fit=crop" alt="Rajasthan" class="package-img">
+                        <div class="package-img-container">
+                            <img src="https://images.unsplash.com/photo-1535461464858-4f6cc8a19b8e?w=800&h=600&fit=crop&auto=format" alt="Royal Rajasthan Experience" class="package-img">
                         </div>
                         <div class="package-body">
                             <div class="package-tags">
                                 <span class="tag">Luxury</span>
                                 <span class="tag">Heritage</span>
                             </div>
-                            <h3 style="color: var(--black); margin-bottom: 0.5rem;">Royal Rajasthan Experience</h3>
-                            <p style="color: var(--text-gray); font-size: 0.95rem;">Palaces, forts, desert safari, and luxury heritage hotels</p>
+                            <h3>Royal Rajasthan Experience</h3>
+                            <p>Palaces, forts, desert safari, and luxury heritage hotels</p>
                             <div class="duration">⏱️ 8 Days / 7 Nights</div>
                             <div class="price-row">
                                 <div class="price counter" data-target="100000">₹1,00,000</div>
-                                <a href="booking-without-flight.html" class="btn btn-primary">Book Now</a>
+                                <button onclick="openFlightModal('Royal Rajasthan Experience', 100000)" class="btn btn-primary">Book Now</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Package 8: Singapore -->
                     <div class="package-item fade-in zoom-in" data-type="premium" data-destination="international" data-travel="family" data-price="90000" data-duration="5" style="animation-delay: 0.7s;">
-                        <div style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&h=600&fit=crop" alt="Singapore" class="package-img">
+                        <div class="package-img-container">
+                            <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&h=600&fit=crop&auto=format" alt="Singapore Family Delight" class="package-img">
                         </div>
                         <div class="package-body">
                             <div class="package-tags">
                                 <span class="tag">Premium</span>
                                 <span class="tag">Family Fun</span>
                             </div>
-                            <h3 style="color: var(--black); margin-bottom: 0.5rem;">Singapore Family Delight</h3>
-                            <p style="color: var(--text-gray); font-size: 0.95rem;">Universal Studios, Gardens by the Bay, and Sentosa Island</p>
+                            <h3>Singapore Family Delight</h3>
+                            <p>Universal Studios, Gardens by the Bay, and Sentosa Island</p>
                             <div class="duration">⏱️ 5 Days / 4 Nights</div>
                             <div class="price-row">
                                 <div class="price counter" data-target="90000">₹90,000</div>
-                                <a href="booking-with-flight.html" class="btn btn-primary">Book Now</a>
+                                <button onclick="openFlightModal('Singapore Family Delight', 90000)" class="btn btn-primary">Book Now</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Package 9: Char Dham -->
                     <div class="package-item fade-in zoom-in" data-type="basic" data-destination="pilgrimage" data-travel="family" data-price="51000" data-duration="10" style="animation-delay: 0.8s;">
-                        <div style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&h=600&fit=crop" alt="Char Dham" class="package-img">
+                        <div class="package-img-container">
+                            <img src="https://images.unsplash.com/photo-1627732919682-3a8b8d5c86f8?w=800&h=600&fit=crop&auto=format" alt="Char Dham Yatra" class="package-img">
                         </div>
                         <div class="package-body">
                             <div class="package-tags">
                                 <span class="tag">Pilgrimage</span>
                                 <span class="tag">Spiritual</span>
                             </div>
-                            <h3 style="color: var(--black); margin-bottom: 0.5rem;">Char Dham Yatra</h3>
-                            <p style="color: var(--text-gray); font-size: 0.95rem;">Sacred journey to Badrinath, Kedarnath, Gangotri, and Yamunotri</p>
+                            <h3>Char Dham Yatra</h3>
+                            <p>Sacred journey to Badrinath, Kedarnath, Gangotri, and Yamunotri</p>
                             <div class="duration">⏱️ 10 Days / 9 Nights</div>
                             <div class="price-row">
                                 <div class="price counter" data-target="51000">₹51,000</div>
-                                <a href="booking-without-flight.html" class="btn btn-primary">Book Now</a>
+                                <button onclick="openFlightModal('Char Dham Yatra', 51000)" class="btn btn-primary">Book Now</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Package 10: Bali -->
                     <div class="package-item fade-in zoom-in" data-type="luxury" data-destination="international" data-travel="couple" data-price="135000" data-duration="7" style="animation-delay: 0.9s;">
-                        <div style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&h=600&fit=crop" alt="Bali" class="package-img">
+                        <div class="package-img-container">
+                            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&h=600&fit=crop&auto=format" alt="Bali Island Retreat" class="package-img">
                         </div>
                         <div class="package-body">
                             <div class="package-tags">
                                 <span class="tag">Luxury</span>
                                 <span class="tag">Tropical</span>
                             </div>
-                            <h3 style="color: var(--black); margin-bottom: 0.5rem;">Bali Island Retreat</h3>
-                            <p style="color: var(--text-gray); font-size: 0.95rem;">Temple tours, rice terraces, beach clubs, and luxury resorts</p>
+                            <h3>Bali Island Retreat</h3>
+                            <p>Temple tours, rice terraces, beach clubs, and luxury resorts</p>
                             <div class="duration">⏱️ 7 Days / 6 Nights</div>
                             <div class="price-row">
                                 <div class="price counter" data-target="135000">₹1,35,000</div>
-                                <a href="booking-with-flight.html" class="btn btn-primary">Book Now</a>
+                                <button onclick="openFlightModal('Bali Island Retreat', 135000)" class="btn btn-primary">Book Now</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Package 11: Kerala -->
                     <div class="package-item fade-in zoom-in" data-type="premium" data-destination="india" data-travel="couple" data-price="48000" data-duration="6" style="animation-delay: 1s;">
-                        <div style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&h=600&fit=crop" alt="Kerala" class="package-img">
+                        <div class="package-img-container">
+                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop&auto=format" alt="Kerala Backwaters & Hills" class="package-img">
                         </div>
                         <div class="package-body">
                             <div class="package-tags">
                                 <span class="tag">Premium</span>
                                 <span class="tag">Backwaters</span>
                             </div>
-                            <h3 style="color: var(--black); margin-bottom: 0.5rem;">Kerala Backwaters & Hills</h3>
-                            <p style="color: var(--text-gray); font-size: 0.95rem;">Houseboat cruise, tea plantations, and Ayurvedic spa</p>
+                            <h3>Kerala Backwaters & Hills</h3>
+                            <p>Houseboat cruise, tea plantations, and Ayurvedic spa</p>
                             <div class="duration">⏱️ 6 Days / 5 Nights</div>
                             <div class="price-row">
                                 <div class="price counter" data-target="48000">₹48,000</div>
-                                <a href="booking-without-flight.html" class="btn btn-primary">Book Now</a>
+                                <button onclick="openFlightModal('Kerala Backwaters & Hills', 48000)" class="btn btn-primary">Book Now</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Package 12: Europe Tour -->
-                    <div class="package-item fade-in zoom-in" data-type="luxury" data-destination="international" data-travel="family" data-price="265000" data-duration="12" style="animation-delay: 1.1s;">
-                        <div style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&h=600&fit=crop" alt="Europe" class="package-img">
+                    <div class="package-item fade-in zoom-in" data-type="luxury" data-destination="international" data-travel="family" data-price="265000" data-duration="12" style="animation-delay: 1.1s;" data-popular="true">
+                        <div class="popular-badge">Best Seller</div>
+                        <div class="package-img-container">
+                            <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&h=600&fit=crop&auto=format" alt="Grand Europe Tour" class="package-img">
                         </div>
                         <div class="package-body">
                             <div class="package-tags">
                                 <span class="tag">Luxury</span>
                                 <span class="tag">Multi-Country</span>
                             </div>
-                            <h3 style="color: var(--black); margin-bottom: 0.5rem;">Grand Europe Tour</h3>
-                            <p style="color: var(--text-gray); font-size: 0.95rem;">Paris, Switzerland, Italy, and more - 5 countries in one trip</p>
+                            <h3>Grand Europe Tour</h3>
+                            <p>Paris, Switzerland, Italy, and more - 5 countries in one trip</p>
                             <div class="duration">⏱️ 12 Days / 11 Nights</div>
                             <div class="price-row">
                                 <div class="price counter" data-target="265000">₹2,65,000</div>
-                                <a href="booking-with-flight.html" class="btn btn-primary glow">Book Now</a>
+                                <button onclick="openFlightModal('Grand Europe Tour', 265000)" class="btn btn-primary">Book Now</button>
                             </div>
                         </div>
                     </div>
@@ -456,16 +1118,63 @@
         </div>
     </main>
 
+    <!-- Flight Option Modal -->
+    <div id="flightOptionModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 style="color: var(--primary-orange); text-align: center; margin-bottom: 1rem;">Choose Your Package</h2>
+            <p style="text-align: center; color: var(--text-gray); margin-bottom: 2rem;" id="modalPackageName">Select the package type that suits your travel needs</p>
+
+            <div class="flight-options-grid">
+                <div class="flight-option-card" onclick="selectFlightOption('with')">
+                    <div class="option-icon">✈️</div>
+                    <h3>With Flight</h3>
+                    <p>Complete package including round-trip flights</p>
+                    <ul class="option-features">
+                        <li>Flight tickets included</li>
+                        <li>Hotel accommodation</li>
+                        <li>Airport transfers</li>
+                        <li>All taxes included</li>
+                        <li>Travel insurance</li>
+                    </ul>
+                    <button class="btn btn-primary">Select Package</button>
+                </div>
+
+                <div class="flight-option-card" onclick="selectFlightOption('without')">
+                    <div class="option-icon">🏨</div>
+                    <h3>Without Flight</h3>
+                    <p>Package without flight - perfect for local travelers</p>
+                    <ul class="option-features">
+                        <li>Hotel accommodation</li>
+                        <li>Ground transportation</li>
+                        <li>Sightseeing tours</li>
+                        <li>Flexible arrangements</li>
+                        <li>Meal plans included</li>
+                    </ul>
+                    <button class="btn btn-primary">Select Package</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        ↑
+    </div>
+
     <footer>
         <div class="footer-content">
             <div class="footer-section">
                 <h3>About Trip Holiday</h3>
                 <p>Your trusted travel partner for creating unforgettable memories.</p>
+                <p>We specialize in crafting personalized travel experiences that cater to all your needs.</p>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="packages.html">All Packages</a></li>
+                    <li><a href="luxury-holiday.html">Luxury Holidays</a></li>
+                    <li><a href="international-holiday.html">International Tours</a></li>
                     <li><a href="blog.html">Travel Blog</a></li>
                     <li><a href="visa.html">Visa Services</a></li>
                 </ul>
@@ -475,22 +1184,110 @@
                 <ul>
                     <li><a href="cancellation-policy.html">Cancellation Policy</a></li>
                     <li><a href="date-change-policy.html">Date Change Policy</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
                     <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="refund-policy.html">Refund Policy</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Contact Us</h3>
-                <p>Email: info@tripholiday.com</p>
-                <p>Phone: +91 1234567890</p>
+                <p>✉️ Email: info@tripholiday.com</p>
+                <p>📞 Phone: +91 1234567890</p>
+                <p>📍 Address: 123 Travel Street, Mumbai, India</p>
+                <div style="margin-top: 1rem;">
+                    <p style="color: #ccc; font-size: 0.9rem;">Follow us:</p>
+                    <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                        <a href="#" style="color: var(--primary-orange);">FB</a>
+                        <a href="#" style="color: var(--primary-orange);">IG</a>
+                        <a href="#" style="color: var(--primary-orange);">TW</a>
+                        <a href="#" style="color: var(--primary-orange);">YT</a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Trip Holiday. All rights reserved.</p>
+            <p>&copy; 2025 Trip Holiday. All rights reserved. | Designed with ❤️ for travelers</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
     <script>
+        // Current selected package info
+        let currentPackage = {
+            name: '',
+            price: 0
+        };
+
+        // DOM Ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize animations
+            animatePackages();
+            
+            // Initialize price counters
+            initPriceCounters();
+            
+            // Initialize back to top button
+            initBackToTop();
+            
+            // Show all packages initially
+            filterPackages();
+        });
+
+        // Animate packages on scroll
+        function animatePackages() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.package-item').forEach(item => {
+                observer.observe(item);
+            });
+        }
+
+        // Initialize price counters with animation
+        function initPriceCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const start = 0;
+                const duration = 2000;
+                let startTime = null;
+
+                function animate(currentTime) {
+                    if (!startTime) startTime = currentTime;
+                    const progress = Math.min((currentTime - startTime) / duration, 1);
+                    
+                    // Easing function for smooth animation
+                    const easeOut = 1 - Math.pow(1 - progress, 3);
+                    const currentValue = Math.floor(start + (target - start) * easeOut);
+                    
+                    counter.textContent = '₹' + currentValue.toLocaleString('en-IN');
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animate);
+                    }
+                }
+
+                // Start animation when element comes into view
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            requestAnimationFrame(animate);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+
+                observer.observe(counter);
+            });
+        }
+
         // Sort functionality
         function sortPackages(sortBy) {
             const grid = document.getElementById('packagesGrid');
@@ -503,21 +1300,38 @@
             event.target.classList.add('active');
 
             packages.sort((a, b) => {
+                const aPrice = parseInt(a.dataset.price);
+                const bPrice = parseInt(b.dataset.price);
+                const aDuration = parseInt(a.dataset.duration);
+                const bDuration = parseInt(b.dataset.duration);
+                const aPopular = a.dataset.popular === 'true';
+                const bPopular = b.dataset.popular === 'true';
+
                 switch(sortBy) {
                     case 'low-price':
-                        return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+                        return aPrice - bPrice;
                     case 'high-price':
-                        return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+                        return bPrice - aPrice;
                     case 'duration':
-                        return parseInt(a.dataset.duration) - parseInt(b.dataset.duration);
+                        return aDuration - bDuration;
                     case 'popular':
                     default:
-                        return 0;
+                        // Popular packages first, then sort by price
+                        if (aPopular && !bPopular) return -1;
+                        if (!aPopular && bPopular) return 1;
+                        return bPrice - aPrice; // Higher price first for popular
                 }
             });
 
-            // Re-append sorted packages
-            packages.forEach(pkg => grid.appendChild(pkg));
+            // Re-append sorted packages with animation
+            grid.innerHTML = '';
+            packages.forEach((pkg, index) => {
+                pkg.style.animationDelay = `${index * 0.1}s`;
+                grid.appendChild(pkg);
+            });
+
+            // Reinitialize animations
+            setTimeout(animatePackages, 100);
         }
 
         // Filter functionality
@@ -532,8 +1346,9 @@
             const budget = document.getElementById('filterBudget').value;
 
             const packages = document.querySelectorAll('.package-item');
+            let visibleCount = 0;
 
-            packages.forEach(pkg => {
+            packages.forEach((pkg, index) => {
                 let show = true;
 
                 // Filter by type
@@ -559,7 +1374,157 @@
                     if (budget === 'high' && price <= 150000) show = false;
                 }
 
-                pkg.style.display = show ? 'block' : 'none';
+                if (show) {
+                    pkg.style.display = 'block';
+                    pkg.style.animationDelay = `${visibleCount * 0.1}s`;
+                    visibleCount++;
+                } else {
+                    pkg.style.display = 'none';
+                }
+            });
+
+            // Show message if no packages found
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                if (!noResults) {
+                    const message = document.createElement('div');
+                    message.id = 'noResults';
+                    message.innerHTML = `
+                        <div style="text-align: center; padding: 3rem; color: var(--text-gray);">
+                            <h3>No packages found</h3>
+                            <p>Try adjusting your filters to find more options</p>
+                            <button onclick="resetFilters()" class="btn btn-primary" style="margin-top: 1rem;">
+                                Reset All Filters
+                            </button>
+                        </div>
+                    `;
+                    document.getElementById('packagesGrid').appendChild(message);
+                }
+            } else if (noResults) {
+                noResults.remove();
+            }
+
+            // Reinitialize animations for visible packages
+            setTimeout(animatePackages, 100);
+        }
+
+        function resetFilters() {
+            document.getElementById('filterType').value = 'all';
+            document.getElementById('filterDestination').value = 'all';
+            document.getElementById('filterTravel').value = 'all';
+            document.getElementById('filterBudget').value = 'all';
+            
+            // Reset sort button
+            document.querySelectorAll('.sort-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.sort-button').classList.add('active');
+            
+            filterPackages();
+        }
+
+        // Flight Option Modal functionality
+        const modal = document.getElementById('flightOptionModal');
+        const closeBtn = document.querySelector('.close-modal');
+
+        // Function to open modal with package info
+        function openFlightModal(packageName, packagePrice) {
+            currentPackage.name = packageName;
+            currentPackage.price = packagePrice;
+            
+            // Update modal with package info
+            const modalPackageName = document.getElementById('modalPackageName');
+            modalPackageName.innerHTML = `Select your preferred option for: <strong>${packageName}</strong>`;
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Function to close modal
+        function closeFlightModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Function to handle flight option selection
+        function selectFlightOption(option) {
+            // Show loading state
+            const buttons = document.querySelectorAll('.flight-option-card .btn');
+            buttons.forEach(btn => {
+                btn.innerHTML = 'Processing...';
+                btn.disabled = true;
+            });
+
+            // Simulate API call delay
+            setTimeout(() => {
+                if (option === 'with') {
+                    window.location.href = `booking-with-flight.html?package=${encodeURIComponent(currentPackage.name)}&price=${currentPackage.price}`;
+                } else {
+                    window.location.href = `booking-without-flight.html?package=${encodeURIComponent(currentPackage.name)}&price=${currentPackage.price}`;
+                }
+            }, 1000);
+        }
+
+        // Close modal when clicking the X button
+        closeBtn.onclick = closeFlightModal;
+
+        // Close modal when clicking outside the modal content
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                closeFlightModal();
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.style.display === 'block') {
+                closeFlightModal();
+            }
+        });
+
+        // Back to Top functionality
+        function initBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Image error handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('error', function() {
+                    this.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=600&fit=crop&auto=format';
+                    this.alt = 'Travel destination image';
+                });
+            });
+        });
+
+        // Search functionality (optional enhancement)
+        function searchPackages() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const packages = document.querySelectorAll('.package-item');
+            
+            packages.forEach(pkg => {
+                const title = pkg.querySelector('h3').textContent.toLowerCase();
+                const description = pkg.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    pkg.style.display = 'block';
+                } else {
+                    pkg.style.display = 'none';
+                }
             });
         }
     </script>
