@@ -174,7 +174,21 @@
                     <h2 style="color: var(--primary-orange); margin-bottom: 1.5rem;">👥 Travelers Information</h2>
 
                     <div class="info-box">
-                        <strong>Age Guidelines:</strong> Adults (18+ years) | Children (2-17 years) | Infants (0-2 years)
+                        <strong style="font-size: 1.1rem; color: var(--primary-orange);">Age Guidelines</strong>
+                        <div style="margin-top: 1rem; display: grid; gap: 1rem;">
+                            <div style="padding: 0.8rem; background: white; border-radius: 8px; border-left: 3px solid #4caf50;">
+                                <strong style="color: #2e7d32;">Infant - Up to 2 Years</strong>
+                                <p style="color: var(--text-gray); margin-top: 0.3rem; font-size: 0.95rem;">The guests should be less than 2 years old on the last day of travel.</p>
+                            </div>
+                            <div style="padding: 0.8rem; background: white; border-radius: 8px; border-left: 3px solid #2196f3;">
+                                <strong style="color: #1565c0;">Child - 2–12 Years</strong>
+                                <p style="color: var(--text-gray); margin-top: 0.3rem; font-size: 0.95rem;">Flight tickets are required and extra bed requests can be made at an additional cost.</p>
+                            </div>
+                            <div style="padding: 0.8rem; background: white; border-radius: 8px; border-left: 3px solid var(--primary-orange);">
+                                <strong style="color: var(--dark-orange);">Adult - Above 12 Years</strong>
+                                <p style="color: var(--text-gray); margin-top: 0.3rem; font-size: 0.95rem;">The guests will be considered adults and all standard charges are applicable.</p>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="grid grid-2">
@@ -189,29 +203,29 @@
                     </div>
 
                     <div id="adultsAgeSection">
-                        <h3 style="margin-bottom: 1rem; color: var(--black);">Adult Ages</h3>
+                        <h3 style="margin-bottom: 1rem; color: var(--black);">Adult Passenger Details</h3>
                         <div class="guest-row">
                             <div class="form-group">
                                 <label>Adult 1 - Full Name *</label>
                                 <input type="text" class="form-control" placeholder="Full name" required>
                             </div>
                             <div class="form-group">
-                                <label>Age *</label>
-                                <input type="number" class="form-control" min="18" placeholder="Age" required>
+                                <label>Age (Above 12 years) *</label>
+                                <input type="number" class="form-control" min="13" placeholder="Age" required>
                             </div>
                         </div>
                     </div>
 
                     <div id="childrenAgeSection" style="margin-top: 1.5rem;">
-                        <h3 style="margin-bottom: 1rem; color: var(--black);">Children Ages</h3>
+                        <h3 style="margin-bottom: 1rem; color: var(--black);">Children Passenger Details</h3>
                         <div class="guest-row">
                             <div class="form-group">
                                 <label>Child 1 - Full Name</label>
                                 <input type="text" class="form-control" placeholder="Full name">
                             </div>
                             <div class="form-group">
-                                <label>Age</label>
-                                <input type="number" class="form-control" min="0" max="17" placeholder="Age">
+                                <label>Age (2-12 years)</label>
+                                <input type="number" class="form-control" min="2" max="12" placeholder="Age">
                             </div>
                         </div>
                     </div>
