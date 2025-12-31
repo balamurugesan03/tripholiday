@@ -1,0 +1,18 @@
+# Ignore backend folder (we'll deploy it separately)
+backend/
+
+# Ignore documentation (optional, or keep them)
+DEPLOYMENT_GUIDE.md
+QUICK_SETUP.md
+FOLDER_STRUCTURE.md
+
+# Ignore git files
+.git/
+.gitignore
+
+# Ignore node_modules if any
+node_modules/
+
+# Ignore environment files
+.env
+.env.*
