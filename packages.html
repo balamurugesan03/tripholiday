@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,6 +132,11 @@
                 opacity: 1;
                 transform: scale(1);
             }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         /* Filter Section */
@@ -917,12 +924,36 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="packages.html">Packages</a></li>
-                    <li><a href="luxury-holiday.html">Luxury</a></li>
-                    <li><a href="international-holiday.html">International</a></li>
-                    <li><a href="india-holiday.html">India</a></li>
-                    <li><a href="pilgrimage.html">Pilgrimage</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Destination</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="luxury-holiday.html">Luxury</a></li>
+                            <li><a href="india-holiday.html">India</a></li>
+                            <li><a href="pilgrimage.html">Pilgrimage</a></li>
+                            <li><a href="international-holiday.html">International</a></li>
+                        </ul>
+                    </li>
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="visa.html">Visa</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Profile</a>
+                        <ul class="dropdown-menu">
+                            <li class="auth-nav-item" id="loginNavItem">
+                                <a href="login.html" class="btn-nav-login">Login</a>
+                            </li>
+                            <li class="auth-nav-item" id="registerNavItem">
+                                <a href="register.html" class="btn-nav-register">Sign Up</a>
+                            </li>
+                            <li class="auth-nav-item hidden" id="userNavItem">
+                                <a href="profile.html" class="btn-nav-profile">
+                                    <span id="navUserName">My Account</span>
+                                </a>
+                            </li>
+                            <li class="auth-nav-item hidden" id="logoutNavItem">
+                                <a href="#" onclick="userLogout(event)" class="btn-nav-logout">Logout</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -1011,284 +1042,7 @@
             <!-- Packages Grid -->
             <section style="margin-top: 3rem; margin-bottom: 4rem;">
                 <div class="package-grid" id="packagesGrid">
-                    <!-- Package 1: Dubai -->
-                    <div class="package-item fade-in zoom-in" data-type="luxury" data-destination="international" data-travel="family" data-price="150000" data-duration="7" data-popular="true">
-                        <div class="popular-badge">Most Popular</div>
-                        <div class="package-img-container">
-                            <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&h=600&fit=crop&auto=format" alt="Dubai Luxury Escape" class="package-img">
-                        </div>
-                        <div class="package-body">
-                            <div class="package-tags">
-                                <span class="tag">Luxury</span>
-                                <span class="tag">International</span>
-                            </div>
-                            <h3>Dubai Luxury Escape</h3>
-                            <p>Experience the luxury of Dubai with 5-star hotels, desert safari, and Burj Khalifa</p>
-                            <div class="duration">⏱️ 7 Days / 6 Nights</div>
-                            <div style="margin-top: 1rem;">
-                                <button onclick="openItineraryModal('dubai')" class="btn-secondary" style="width: 100%; margin-bottom: 0.8rem;">📅 View Itinerary</button>
-                            </div>
-                            <div class="price-row">
-                                <div class="price counter" data-target="150000">₹1,50,000</div>
-                                <button onclick="openFlightModal('Dubai Luxury Escape', 150000)" class="btn btn-primary">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Package 2: Goa -->
-                    <div class="package-item fade-in zoom-in" data-type="premium" data-destination="india" data-travel="couple" data-price="37000" data-duration="5" style="animation-delay: 0.1s;">
-                        <div class="package-img-container">
-                            <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&h=600&fit=crop&auto=format" alt="Goa Beach Paradise" class="package-img">
-                        </div>
-                        <div class="package-body">
-                            <div class="package-tags">
-                                <span class="tag">Premium</span>
-                                <span class="tag">India</span>
-                            </div>
-                            <h3>Goa Beach Paradise</h3>
-                            <p>Relax on pristine beaches, enjoy water sports, and explore Portuguese heritage</p>
-                            <div class="duration">⏱️ 5 Days / 4 Nights</div>
-                            <div style="margin-top: 1rem;">
-                                <button onclick="openItineraryModal('goa')" class="btn-secondary" style="width: 100%; margin-bottom: 0.8rem;">📅 View Itinerary</button>
-                            </div>
-                            <div class="price-row">
-                                <div class="price counter" data-target="37000">₹37,000</div>
-                                <button onclick="openFlightModal('Goa Beach Paradise', 37000)" class="btn btn-primary">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Package 3: Maldives -->
-                    <div class="package-item fade-in zoom-in" data-type="luxury" data-destination="international" data-travel="couple" data-price="205000" data-duration="6" style="animation-delay: 0.2s;" data-popular="true">
-                        <div class="popular-badge">Honeymoon Special</div>
-                        <div class="package-img-container">
-                            <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&h=600&fit=crop&auto=format" alt="Maldives Honeymoon Special" class="package-img">
-                        </div>
-                        <div class="package-body">
-                            <div class="package-tags">
-                                <span class="tag">Luxury</span>
-                                <span class="tag">Honeymoon</span>
-                            </div>
-                            <h3>Maldives Honeymoon Special</h3>
-                            <p>Overwater villas, private beaches, and romantic dining under the stars</p>
-                            <div class="duration">⏱️ 6 Days / 5 Nights</div>
-                            <div style="margin-top: 1rem;">
-                                <button onclick="openItineraryModal('maldives')" class="btn-secondary" style="width: 100%; margin-bottom: 0.8rem;">📅 View Itinerary</button>
-                            </div>
-                            <div class="price-row">
-                                <div class="price counter" data-target="205000">₹2,05,000</div>
-                                <button onclick="openFlightModal('Maldives Honeymoon Special', 205000)" class="btn btn-primary">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Package 4: Varanasi -->
-                    <div class="package-item fade-in zoom-in" data-type="basic" data-destination="pilgrimage" data-travel="family" data-price="23000" data-duration="4" style="animation-delay: 0.3s;">
-                        <div class="package-img-container">
-                            <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800&h=600&fit=crop&auto=format" alt="Varanasi Spiritual Journey" class="package-img">
-                        </div>
-                        <div class="package-body">
-                            <div class="package-tags">
-                                <span class="tag">Pilgrimage</span>
-                                <span class="tag">Spiritual</span>
-                            </div>
-                            <h3>Varanasi Spiritual Journey</h3>
-                            <p>Experience the spiritual heart of India with Ganga Aarti and temple visits</p>
-                            <div class="duration">⏱️ 4 Days / 3 Nights</div>
-                            <div style="margin-top: 1rem;">
-                                <button onclick="openItineraryModal('varanasi')" class="btn-secondary" style="width: 100%; margin-bottom: 0.8rem;">📅 View Itinerary</button>
-                            </div>
-                            <div class="price-row">
-                                <div class="price counter" data-target="23000">₹23,000</div>
-                                <button onclick="openFlightModal('Varanasi Spiritual Journey', 23000)" class="btn btn-primary">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Package 5: Kashmir -->
-                    <div class="package-item fade-in zoom-in" data-type="premium" data-destination="india" data-travel="family" data-price="70000" data-duration="7" style="animation-delay: 0.4s;">
-                        <div class="package-img-container">
-                            <img src="https://images.unsplash.com/photo-1593693399740-5c85fae6d6c5?w=800&h=600&fit=crop&auto=format" alt="Kashmir Paradise on Earth" class="package-img">
-                        </div>
-                        <div class="package-body">
-                            <div class="package-tags">
-                                <span class="tag">Premium</span>
-                                <span class="tag">India</span>
-                            </div>
-                            <h3>Kashmir - Paradise on Earth</h3>
-                            <p>Houseboat stay, Shikara ride, and breathtaking valley views</p>
-                            <div class="duration">⏱️ 7 Days / 6 Nights</div>
-                            <div style="margin-top: 1rem;">
-                                <button onclick="openItineraryModal('kashmir')" class="btn-secondary" style="width: 100%; margin-bottom: 0.8rem;">📅 View Itinerary</button>
-                            </div>
-                            <div class="price-row">
-                                <div class="price counter" data-target="70000">₹70,000</div>
-                                <button onclick="openFlightModal('Kashmir Paradise on Earth', 70000)" class="btn btn-primary">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Package 6: Thailand -->
-                    <div class="package-item fade-in zoom-in" data-type="premium" data-destination="international" data-travel="buddy" data-price="78000" data-duration="6" style="animation-delay: 0.5s;">
-                        <div class="package-img-container">
-                            <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?w=800&h=600&fit=crop&auto=format" alt="Thailand Adventure Tour" class="package-img">
-                        </div>
-                        <div class="package-body">
-                            <div class="package-tags">
-                                <span class="tag">Premium</span>
-                                <span class="tag">Adventure</span>
-                            </div>
-                            <h3>Thailand Adventure Tour</h3>
-                            <p>Explore Bangkok, Pattaya, and Phuket with exciting activities</p>
-                            <div class="duration">⏱️ 6 Days / 5 Nights</div>
-                            <div style="margin-top: 1rem;">
-                                <button onclick="openItineraryModal('thailand')" class="btn-secondary" style="width: 100%; margin-bottom: 0.8rem;">📅 View Itinerary</button>
-                            </div>
-                            <div class="price-row">
-                                <div class="price counter" data-target="78000">₹78,000</div>
-                                <button onclick="openFlightModal('Thailand Adventure Tour', 78000)" class="btn btn-primary">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Package 7: Rajasthan -->
-                    <div class="package-item fade-in zoom-in" data-type="luxury" data-destination="india" data-travel="family" data-price="100000" data-duration="8" style="animation-delay: 0.6s;">
-                        <div class="package-img-container">
-                            <img src="https://images.unsplash.com/photo-1535461464858-4f6cc8a19b8e?w=800&h=600&fit=crop&auto=format" alt="Royal Rajasthan Experience" class="package-img">
-                        </div>
-                        <div class="package-body">
-                            <div class="package-tags">
-                                <span class="tag">Luxury</span>
-                                <span class="tag">Heritage</span>
-                            </div>
-                            <h3>Royal Rajasthan Experience</h3>
-                            <p>Palaces, forts, desert safari, and luxury heritage hotels</p>
-                            <div class="duration">⏱️ 8 Days / 7 Nights</div>
-                            <div style="margin-top: 1rem;">
-                                <button onclick="openItineraryModal('rajasthan')" class="btn-secondary" style="width: 100%; margin-bottom: 0.8rem;">📅 View Itinerary</button>
-                            </div>
-                            <div class="price-row">
-                                <div class="price counter" data-target="100000">₹1,00,000</div>
-                                <button onclick="openFlightModal('Royal Rajasthan Experience', 100000)" class="btn btn-primary">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Package 8: Singapore -->
-                    <div class="package-item fade-in zoom-in" data-type="premium" data-destination="international" data-travel="family" data-price="90000" data-duration="5" style="animation-delay: 0.7s;">
-                        <div class="package-img-container">
-                            <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&h=600&fit=crop&auto=format" alt="Singapore Family Delight" class="package-img">
-                        </div>
-                        <div class="package-body">
-                            <div class="package-tags">
-                                <span class="tag">Premium</span>
-                                <span class="tag">Family Fun</span>
-                            </div>
-                            <h3>Singapore Family Delight</h3>
-                            <p>Universal Studios, Gardens by the Bay, and Sentosa Island</p>
-                            <div class="duration">⏱️ 5 Days / 4 Nights</div>
-                            <div style="margin-top: 1rem;">
-                                <button onclick="openItineraryModal('singapore')" class="btn-secondary" style="width: 100%; margin-bottom: 0.8rem;">📅 View Itinerary</button>
-                            </div>
-                            <div class="price-row">
-                                <div class="price counter" data-target="90000">₹90,000</div>
-                                <button onclick="openFlightModal('Singapore Family Delight', 90000)" class="btn btn-primary">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Package 9: Char Dham -->
-                    <div class="package-item fade-in zoom-in" data-type="basic" data-destination="pilgrimage" data-travel="family" data-price="51000" data-duration="10" style="animation-delay: 0.8s;">
-                        <div class="package-img-container">
-                            <img src="https://images.unsplash.com/photo-1627732919682-3a8b8d5c86f8?w=800&h=600&fit=crop&auto=format" alt="Char Dham Yatra" class="package-img">
-                        </div>
-                        <div class="package-body">
-                            <div class="package-tags">
-                                <span class="tag">Pilgrimage</span>
-                                <span class="tag">Spiritual</span>
-                            </div>
-                            <h3>Char Dham Yatra</h3>
-                            <p>Sacred journey to Badrinath, Kedarnath, Gangotri, and Yamunotri</p>
-                            <div class="duration">⏱️ 10 Days / 9 Nights</div>
-                            <div style="margin-top: 1rem;">
-                                <button onclick="openItineraryModal('chardham')" class="btn-secondary" style="width: 100%; margin-bottom: 0.8rem;">📅 View Itinerary</button>
-                            </div>
-                            <div class="price-row">
-                                <div class="price counter" data-target="51000">₹51,000</div>
-                                <button onclick="openFlightModal('Char Dham Yatra', 51000)" class="btn btn-primary">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Package 10: Bali -->
-                    <div class="package-item fade-in zoom-in" data-type="luxury" data-destination="international" data-travel="couple" data-price="135000" data-duration="7" style="animation-delay: 0.9s;">
-                        <div class="package-img-container">
-                            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&h=600&fit=crop&auto=format" alt="Bali Island Retreat" class="package-img">
-                        </div>
-                        <div class="package-body">
-                            <div class="package-tags">
-                                <span class="tag">Luxury</span>
-                                <span class="tag">Tropical</span>
-                            </div>
-                            <h3>Bali Island Retreat</h3>
-                            <p>Temple tours, rice terraces, beach clubs, and luxury resorts</p>
-                            <div class="duration">⏱️ 7 Days / 6 Nights</div>
-                            <div style="margin-top: 1rem;">
-                                <button onclick="openItineraryModal('bali')" class="btn-secondary" style="width: 100%; margin-bottom: 0.8rem;">📅 View Itinerary</button>
-                            </div>
-                            <div class="price-row">
-                                <div class="price counter" data-target="135000">₹1,35,000</div>
-                                <button onclick="openFlightModal('Bali Island Retreat', 135000)" class="btn btn-primary">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Package 11: Kerala -->
-                    <div class="package-item fade-in zoom-in" data-type="premium" data-destination="india" data-travel="couple" data-price="48000" data-duration="6" style="animation-delay: 1s;">
-                        <div class="package-img-container">
-                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop&auto=format" alt="Kerala Backwaters & Hills" class="package-img">
-                        </div>
-                        <div class="package-body">
-                            <div class="package-tags">
-                                <span class="tag">Premium</span>
-                                <span class="tag">Backwaters</span>
-                            </div>
-                            <h3>Kerala Backwaters & Hills</h3>
-                            <p>Houseboat cruise, tea plantations, and Ayurvedic spa</p>
-                            <div class="duration">⏱️ 6 Days / 5 Nights</div>
-                            <div style="margin-top: 1rem;">
-                                <button onclick="openItineraryModal('kerala')" class="btn-secondary" style="width: 100%; margin-bottom: 0.8rem;">📅 View Itinerary</button>
-                            </div>
-                            <div class="price-row">
-                                <div class="price counter" data-target="48000">₹48,000</div>
-                                <button onclick="openFlightModal('Kerala Backwaters & Hills', 48000)" class="btn btn-primary">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Package 12: Europe Tour -->
-                    <div class="package-item fade-in zoom-in" data-type="luxury" data-destination="international" data-travel="family" data-price="265000" data-duration="12" style="animation-delay: 1.1s;" data-popular="true">
-                        <div class="popular-badge">Best Seller</div>
-                        <div class="package-img-container">
-                            <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&h=600&fit=crop&auto=format" alt="Grand Europe Tour" class="package-img">
-                        </div>
-                        <div class="package-body">
-                            <div class="package-tags">
-                                <span class="tag">Luxury</span>
-                                <span class="tag">Multi-Country</span>
-                            </div>
-                            <h3>Grand Europe Tour</h3>
-                            <p>Paris, Switzerland, Italy, and more - 5 countries in one trip</p>
-                            <div class="duration">⏱️ 12 Days / 11 Nights</div>
-                            <div style="margin-top: 1rem;">
-                                <button onclick="openItineraryModal('europe')" class="btn-secondary" style="width: 100%; margin-bottom: 0.8rem;">📅 View Itinerary</button>
-                            </div>
-                            <div class="price-row">
-                                <div class="price counter" data-target="265000">₹2,65,000</div>
-                                <button onclick="openFlightModal('Grand Europe Tour', 265000)" class="btn btn-primary">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Packages will be dynamically loaded from API -->
                 </div>
             </section>
         </div>
@@ -1401,26 +1155,214 @@
     </footer>
 
     <script>
-        // Current selected package info
+        // API Configuration
+        const API_CONFIG = {
+            baseURL: '/api', // Change this to your actual API endpoint
+            endpoints: {
+                packages: '/packages',
+                itineraries: '/itineraries'
+            }
+        };
+
+        // Global state
+        let allPackages = [];
+        let itineraries = {};
         let currentPackage = {
             name: '',
             price: 0
         };
 
         // DOM Ready
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize animations
-            animatePackages();
-            
-            // Initialize price counters
-            initPriceCounters();
-            
-            // Initialize back to top button
-            initBackToTop();
-            
-            // Show all packages initially
-            filterPackages();
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Show loading state
+            showLoading();
+
+            try {
+                // Fetch packages from API
+                await fetchPackages();
+
+                // Render packages
+                renderPackages();
+
+                // Initialize animations
+                animatePackages();
+
+                // Initialize price counters
+                initPriceCounters();
+
+                // Initialize back to top button
+                initBackToTop();
+
+                // Hide loading state
+                hideLoading();
+            } catch (error) {
+                console.error('Error loading packages:', error);
+                showError('Failed to load packages. Please try again later.');
+            }
         });
+
+        // Fetch packages from API
+        async function fetchPackages() {
+            try {
+                // For development: Use local data if API is not available
+                // In production: Replace this with actual API call
+                const response = await fetch(API_CONFIG.baseURL + API_CONFIG.endpoints.packages);
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch packages');
+                }
+
+                const data = await response.json();
+                allPackages = data.packages || [];
+                itineraries = data.itineraries || {};
+
+            } catch (error) {
+                // Fallback: Load from local data if API fails
+                console.warn('API not available, using fallback data');
+                loadFallbackData();
+            }
+        }
+
+        // Fallback data loader (for development/offline mode)
+        function loadFallbackData() {
+            // This function loads data from a local JavaScript object
+            // You can remove this once API is fully implemented
+            allPackages = getFallbackPackages();
+            itineraries = getFallbackItineraries();
+        }
+
+        // Render packages dynamically
+        function renderPackages(packagesToRender = null) {
+            const grid = document.getElementById('packagesGrid');
+            const packages = packagesToRender || allPackages;
+
+            grid.innerHTML = '';
+
+            if (packages.length === 0) {
+                showNoResults();
+                return;
+            }
+
+            packages.forEach((pkg, index) => {
+                const packageCard = createPackageCard(pkg, index);
+                grid.appendChild(packageCard);
+            });
+
+            // Reinitialize animations and counters
+            setTimeout(() => {
+                animatePackages();
+                initPriceCounters();
+            }, 100);
+        }
+
+        // Create package card element
+        function createPackageCard(pkg, index) {
+            const div = document.createElement('div');
+            div.className = 'package-item fade-in zoom-in';
+            div.style.animationDelay = `${index * 0.1}s`;
+
+            // Set data attributes
+            div.dataset.type = pkg.type;
+            div.dataset.destination = pkg.destination;
+            div.dataset.travel = pkg.travel;
+            div.dataset.price = pkg.price;
+            div.dataset.duration = pkg.duration;
+            div.dataset.popular = pkg.popular || false;
+
+            // Build HTML
+            let html = '';
+
+            // Popular badge
+            if (pkg.popular) {
+                html += `<div class="popular-badge">${pkg.popularBadge || 'Most Popular'}</div>`;
+            }
+
+            // Image
+            html += `
+                <div class="package-img-container">
+                    <img src="${pkg.image}" alt="${pkg.title}" class="package-img">
+                </div>
+            `;
+
+            // Package body
+            html += `<div class="package-body">`;
+
+            // Tags
+            html += `<div class="package-tags">`;
+            pkg.tags.forEach(tag => {
+                html += `<span class="tag">${tag}</span>`;
+            });
+            html += `</div>`;
+
+            // Title and description
+            html += `
+                <h3>${pkg.title}</h3>
+                <p>${pkg.description}</p>
+                <div class="duration">⏱️ ${pkg.durationText || pkg.duration + ' Days / ' + (pkg.duration - 1) + ' Nights'}</div>
+            `;
+
+            // Itinerary button
+            if (pkg.id) {
+                html += `
+                    <div style="margin-top: 1rem;">
+                        <button onclick="openItineraryModal('${pkg.id}')" class="btn-secondary" style="width: 100%; margin-bottom: 0.8rem;">📅 View Itinerary</button>
+                    </div>
+                `;
+            }
+
+            // Price row
+            html += `
+                <div class="price-row">
+                    <div class="price counter" data-target="${pkg.price}">₹${pkg.price.toLocaleString('en-IN')}</div>
+                    <button onclick="openFlightModal('${pkg.title}', ${pkg.price})" class="btn btn-primary">Book Now</button>
+                </div>
+            `;
+
+            html += `</div>`; // Close package-body
+
+            div.innerHTML = html;
+            return div;
+        }
+
+        // Show loading state
+        function showLoading() {
+            const grid = document.getElementById('packagesGrid');
+            grid.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+                    <div class="loading-spinner" style="display: inline-block; width: 50px; height: 50px; border: 5px solid var(--light-gray); border-top-color: var(--primary-orange); border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                    <p style="margin-top: 1rem; color: var(--text-gray);">Loading packages...</p>
+                </div>
+            `;
+        }
+
+        // Hide loading state
+        function hideLoading() {
+            // Loading will be replaced by rendered packages
+        }
+
+        // Show error message
+        function showError(message) {
+            const grid = document.getElementById('packagesGrid');
+            grid.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+                    <h3 style="color: #e74c3c;">⚠️ Error</h3>
+                    <p style="color: var(--text-gray); margin: 1rem 0;">${message}</p>
+                    <button onclick="location.reload()" class="btn btn-primary">Retry</button>
+                </div>
+            `;
+        }
+
+        // Show no results message
+        function showNoResults() {
+            const grid = document.getElementById('packagesGrid');
+            grid.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+                    <h3 style="color: var(--text-gray);">No packages found</h3>
+                    <p style="color: var(--text-gray); margin: 1rem 0;">Try adjusting your filters to find more options</p>
+                    <button onclick="resetFilters()" class="btn btn-primary">Reset All Filters</button>
+                </div>
+            `;
+        }
 
         // Animate packages on scroll
         function animatePackages() {
@@ -1478,24 +1420,27 @@
             });
         }
 
-        // Sort functionality
+        // Sort functionality - Updated for dynamic data
         function sortPackages(sortBy) {
-            const grid = document.getElementById('packagesGrid');
-            const packages = Array.from(grid.children);
-
             // Remove active class from all buttons
             document.querySelectorAll('.sort-button').forEach(btn => btn.classList.remove('active'));
 
             // Add active class to clicked button
-            event.target.classList.add('active');
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
 
-            packages.sort((a, b) => {
-                const aPrice = parseInt(a.dataset.price);
-                const bPrice = parseInt(b.dataset.price);
-                const aDuration = parseInt(a.dataset.duration);
-                const bDuration = parseInt(b.dataset.duration);
-                const aPopular = a.dataset.popular === 'true';
-                const bPopular = b.dataset.popular === 'true';
+            // Get current filtered packages
+            const filteredPackages = getFilteredPackages();
+
+            // Sort packages
+            const sortedPackages = [...filteredPackages].sort((a, b) => {
+                const aPrice = parseInt(a.price);
+                const bPrice = parseInt(b.price);
+                const aDuration = parseInt(a.duration);
+                const bDuration = parseInt(b.duration);
+                const aPopular = a.popular === true;
+                const bPopular = b.popular === true;
 
                 switch(sortBy) {
                     case 'low-price':
@@ -1513,89 +1458,52 @@
                 }
             });
 
-            // Re-append sorted packages with animation
-            grid.innerHTML = '';
-            packages.forEach((pkg, index) => {
-                pkg.style.animationDelay = `${index * 0.1}s`;
-                grid.appendChild(pkg);
-            });
-
-            // Reinitialize animations
-            setTimeout(animatePackages, 100);
+            // Render sorted packages
+            renderPackages(sortedPackages);
         }
 
-        // Filter functionality
+        // Filter functionality - Updated for dynamic data
         document.querySelectorAll('#filterType, #filterDestination, #filterTravel, #filterBudget').forEach(filter => {
             filter.addEventListener('change', filterPackages);
         });
 
-        function filterPackages() {
+        function getFilteredPackages() {
             const type = document.getElementById('filterType').value;
             const destination = document.getElementById('filterDestination').value;
             const travel = document.getElementById('filterTravel').value;
             const budget = document.getElementById('filterBudget').value;
 
-            const packages = document.querySelectorAll('.package-item');
-            let visibleCount = 0;
-
-            packages.forEach((pkg, index) => {
-                let show = true;
-
+            return allPackages.filter(pkg => {
                 // Filter by type
-                if (type !== 'all' && pkg.dataset.type !== type) {
-                    show = false;
+                if (type !== 'all' && pkg.type !== type) {
+                    return false;
                 }
 
                 // Filter by destination
-                if (destination !== 'all' && pkg.dataset.destination !== destination) {
-                    show = false;
+                if (destination !== 'all' && pkg.destination !== destination) {
+                    return false;
                 }
 
                 // Filter by travel type
-                if (travel !== 'all' && pkg.dataset.travel !== travel) {
-                    show = false;
+                if (travel !== 'all' && pkg.travel !== travel) {
+                    return false;
                 }
 
                 // Filter by budget
                 if (budget !== 'all') {
-                    const price = parseInt(pkg.dataset.price);
-                    if (budget === 'low' && price >= 50000) show = false;
-                    if (budget === 'medium' && (price < 50000 || price > 150000)) show = false;
-                    if (budget === 'high' && price <= 150000) show = false;
+                    const price = parseInt(pkg.price);
+                    if (budget === 'low' && price >= 50000) return false;
+                    if (budget === 'medium' && (price < 50000 || price > 150000)) return false;
+                    if (budget === 'high' && price <= 150000) return false;
                 }
 
-                if (show) {
-                    pkg.style.display = 'block';
-                    pkg.style.animationDelay = `${visibleCount * 0.1}s`;
-                    visibleCount++;
-                } else {
-                    pkg.style.display = 'none';
-                }
+                return true;
             });
+        }
 
-            // Show message if no packages found
-            const noResults = document.getElementById('noResults');
-            if (visibleCount === 0) {
-                if (!noResults) {
-                    const message = document.createElement('div');
-                    message.id = 'noResults';
-                    message.innerHTML = `
-                        <div style="text-align: center; padding: 3rem; color: var(--text-gray);">
-                            <h3>No packages found</h3>
-                            <p>Try adjusting your filters to find more options</p>
-                            <button onclick="resetFilters()" class="btn btn-primary" style="margin-top: 1rem;">
-                                Reset All Filters
-                            </button>
-                        </div>
-                    `;
-                    document.getElementById('packagesGrid').appendChild(message);
-                }
-            } else if (noResults) {
-                noResults.remove();
-            }
-
-            // Reinitialize animations for visible packages
-            setTimeout(animatePackages, 100);
+        function filterPackages() {
+            const filteredPackages = getFilteredPackages();
+            renderPackages(filteredPackages);
         }
 
         function resetFilters() {
@@ -1701,25 +1609,212 @@
             });
         });
 
-        // Search functionality (optional enhancement)
-        function searchPackages() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const packages = document.querySelectorAll('.package-item');
+        // Search functionality - Updated for dynamic data
+        function searchPackages(searchTerm = '') {
+            if (!searchTerm && document.getElementById('searchInput')) {
+                searchTerm = document.getElementById('searchInput').value;
+            }
 
-            packages.forEach(pkg => {
-                const title = pkg.querySelector('h3').textContent.toLowerCase();
-                const description = pkg.querySelector('p').textContent.toLowerCase();
+            searchTerm = searchTerm.toLowerCase();
 
-                if (title.includes(searchTerm) || description.includes(searchTerm)) {
-                    pkg.style.display = 'block';
-                } else {
-                    pkg.style.display = 'none';
-                }
+            if (!searchTerm) {
+                renderPackages();
+                return;
+            }
+
+            const searchResults = allPackages.filter(pkg => {
+                const title = pkg.title.toLowerCase();
+                const description = pkg.description.toLowerCase();
+                return title.includes(searchTerm) || description.includes(searchTerm);
             });
+
+            renderPackages(searchResults);
         }
 
-        // Itinerary Data for all packages
-        const itineraries = {
+        // FALLBACK DATA FUNCTIONS
+        // These functions provide sample data when API is not available
+        // Remove these in production when API is fully implemented
+
+        function getFallbackPackages() {
+            return [
+                {
+                    id: 'dubai',
+                    title: 'Dubai Luxury Escape',
+                    description: 'Experience the luxury of Dubai with 5-star hotels, desert safari, and Burj Khalifa',
+                    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&h=600&fit=crop&auto=format',
+                    price: 150000,
+                    duration: 7,
+                    durationText: '7 Days / 6 Nights',
+                    type: 'luxury',
+                    destination: 'international',
+                    travel: 'family',
+                    popular: true,
+                    popularBadge: 'Most Popular',
+                    tags: ['Luxury', 'International']
+                },
+                {
+                    id: 'goa',
+                    title: 'Goa Beach Paradise',
+                    description: 'Relax on pristine beaches, enjoy water sports, and explore Portuguese heritage',
+                    image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&h=600&fit=crop&auto=format',
+                    price: 37000,
+                    duration: 5,
+                    durationText: '5 Days / 4 Nights',
+                    type: 'premium',
+                    destination: 'india',
+                    travel: 'couple',
+                    popular: false,
+                    tags: ['Premium', 'India']
+                },
+                {
+                    id: 'maldives',
+                    title: 'Maldives Honeymoon Special',
+                    description: 'Overwater villas, pristine beaches, and romantic dinners under the stars',
+                    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&h=600&fit=crop&auto=format',
+                    price: 205000,
+                    duration: 6,
+                    durationText: '6 Days / 5 Nights',
+                    type: 'luxury',
+                    destination: 'international',
+                    travel: 'couple',
+                    popular: true,
+                    popularBadge: 'Honeymoon Special',
+                    tags: ['Luxury', 'International']
+                },
+                {
+                    id: 'varanasi',
+                    title: 'Varanasi Spiritual Journey',
+                    description: 'Experience spiritual awakening with Ganga Aarti, ancient temples, and holy rituals',
+                    image: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=800&h=600&fit=crop&auto=format',
+                    price: 22000,
+                    duration: 4,
+                    durationText: '4 Days / 3 Nights',
+                    type: 'budget',
+                    destination: 'india',
+                    travel: 'solo',
+                    popular: false,
+                    tags: ['Budget', 'India']
+                },
+                {
+                    id: 'kashmir',
+                    title: 'Kashmir - Paradise on Earth',
+                    description: 'Dal Lake houseboats, Gulmarg snow activities, and stunning mountain landscapes',
+                    image: 'https://images.unsplash.com/photo-1567157440776-a72d66db0814?w=800&h=600&fit=crop&auto=format',
+                    price: 58000,
+                    duration: 7,
+                    durationText: '7 Days / 6 Nights',
+                    type: 'premium',
+                    destination: 'india',
+                    travel: 'family',
+                    popular: true,
+                    popularBadge: 'Trending',
+                    tags: ['Premium', 'India']
+                },
+                {
+                    id: 'thailand',
+                    title: 'Thailand Adventure Tour',
+                    description: 'Bangkok temples, Pattaya beaches, and Phuket island hopping experience',
+                    image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&h=600&fit=crop&auto=format',
+                    price: 95000,
+                    duration: 6,
+                    durationText: '6 Days / 5 Nights',
+                    type: 'premium',
+                    destination: 'international',
+                    travel: 'family',
+                    popular: false,
+                    tags: ['Premium', 'International']
+                },
+                {
+                    id: 'rajasthan',
+                    title: 'Royal Rajasthan Experience',
+                    description: 'Explore majestic forts, palaces, and desert landscapes of royal Rajasthan',
+                    image: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&h=600&fit=crop&auto=format',
+                    price: 68000,
+                    duration: 8,
+                    durationText: '8 Days / 7 Nights',
+                    type: 'premium',
+                    destination: 'india',
+                    travel: 'family',
+                    popular: false,
+                    tags: ['Premium', 'India']
+                },
+                {
+                    id: 'singapore',
+                    title: 'Singapore Family Delight',
+                    description: 'Universal Studios, Gardens by the Bay, and Sentosa Island adventures',
+                    image: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&h=600&fit=crop&auto=format',
+                    price: 120000,
+                    duration: 5,
+                    durationText: '5 Days / 4 Nights',
+                    type: 'luxury',
+                    destination: 'international',
+                    travel: 'family',
+                    popular: false,
+                    tags: ['Luxury', 'International']
+                },
+                {
+                    id: 'chardham',
+                    title: 'Char Dham Yatra',
+                    description: 'Sacred pilgrimage to Yamunotri, Gangotri, Kedarnath, and Badrinath temples',
+                    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&h=600&fit=crop&auto=format',
+                    price: 48000,
+                    duration: 10,
+                    durationText: '10 Days / 9 Nights',
+                    type: 'budget',
+                    destination: 'india',
+                    travel: 'group',
+                    popular: false,
+                    tags: ['Budget', 'India']
+                },
+                {
+                    id: 'bali',
+                    title: 'Bali Island Retreat',
+                    description: 'Tropical paradise with rice terraces, temples, beaches, and cultural experiences',
+                    image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&h=600&fit=crop&auto=format',
+                    price: 115000,
+                    duration: 7,
+                    durationText: '7 Days / 6 Nights',
+                    type: 'luxury',
+                    destination: 'international',
+                    travel: 'couple',
+                    popular: true,
+                    popularBadge: 'Romantic Escape',
+                    tags: ['Luxury', 'International']
+                },
+                {
+                    id: 'kerala',
+                    title: 'Kerala Backwaters & Hills',
+                    description: 'Houseboat cruises, tea plantations, and Ayurvedic wellness experiences',
+                    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&h=600&fit=crop&auto=format',
+                    price: 42000,
+                    duration: 6,
+                    durationText: '6 Days / 5 Nights',
+                    type: 'premium',
+                    destination: 'india',
+                    travel: 'couple',
+                    popular: false,
+                    tags: ['Premium', 'India']
+                },
+                {
+                    id: 'europe',
+                    title: 'Grand Europe Tour',
+                    description: 'Discover Paris, Switzerland, Venice, Florence, Rome, and Vienna in one grand tour',
+                    image: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&h=600&fit=crop&auto=format',
+                    price: 395000,
+                    duration: 12,
+                    durationText: '12 Days / 11 Nights',
+                    type: 'luxury',
+                    destination: 'international',
+                    travel: 'couple',
+                    popular: true,
+                    popularBadge: 'Premium',
+                    tags: ['Luxury', 'International']
+                }
+            ];
+        }
+
+        function getFallbackItineraries() {
+            return {
             dubai: {
                 title: "Dubai Luxury Escape",
                 subtitle: "7 Days / 6 Nights",
@@ -1876,6 +1971,7 @@
                 ]
             }
         };
+        }
 
         // Function to open itinerary modal
         function openItineraryModal(packageId) {
@@ -1961,5 +2057,6 @@
             }
         });
     </script>
+    <script src="auth.js"></script>
 </body>
 </html>
