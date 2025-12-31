@@ -70,18 +70,16 @@ tripholiday/
 │   │   ├── styles.css               # Main stylesheet
 │   │   ├── script.js                # Main JavaScript
 │   │   ├── auth.js                  # Authentication JavaScript
-│   │   ├── update-prices.js         # Price update utility
-│   │   └── WhatsApp Image 2025-12-28 at 8.53.38 PM.jpeg # Logo
+│   │   └── logo.jpg                 # Company logo
 │   │
 │   └── payment.html                 # Payment page
 │
 ├── Documentation/
 │   ├── README.md                    # Project overview
-│   ├── UPDATES.md                   # Version history
-│   ├── ALL-PAGES-UPDATED.md         # Page updates log
 │   ├── API_DOCUMENTATION.md         # API documentation
 │   ├── FOLDER_STRUCTURE.md          # This file
-│   └── DEPLOYMENT_GUIDE.md          # Hosting guide
+│   ├── DEPLOYMENT_GUIDE.md          # Hosting guide
+│   └── QUICK_SETUP.md               # Local setup guide
 │
 └── .gitignore                       # Git ignore rules
 
