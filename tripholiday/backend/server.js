@@ -11,6 +11,7 @@ const adminRoutes = require('./routes/admin');
 const authRoutes = require('./routes/auth');
 const userAuthRoutes = require('./routes/userAuth');
 const userProfileRoutes = require('./routes/userProfile');
+const bookingsRoutes = require('./routes/bookings');
 
 // Initialize Express app
 const app = express();
@@ -37,6 +38,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/user/auth', userAuthRoutes);
 app.use('/api/user', userProfileRoutes);
+app.use('/api/bookings', bookingsRoutes);
 
 // Root route
 app.get('/', (req, res) => {
