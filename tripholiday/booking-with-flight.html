@@ -205,40 +205,22 @@
                     <div class="grid grid-2">
                         <div class="form-group">
                             <label>Number of Adults *</label>
-                            <input type="number" class="form-control" min="1" value="1" required>
+                            <input type="number" id="numAdults" class="form-control" min="1" value="1" required>
                         </div>
                         <div class="form-group">
                             <label>Number of Children</label>
-                            <input type="number" class="form-control" min="0" value="0">
+                            <input type="number" id="numChildren" class="form-control" min="0" value="0">
                         </div>
                     </div>
 
                     <div id="adultsAgeSection">
                         <h3 style="margin-bottom: 1rem; color: var(--black);">Adult Passenger Details</h3>
-                        <div class="guest-row">
-                            <div class="form-group">
-                                <label>Adult 1 - Full Name (as per passport) *</label>
-                                <input type="text" class="form-control" placeholder="Full name" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Age (Above 12 years) *</label>
-                                <input type="number" class="form-control" min="13" placeholder="Age" required>
-                            </div>
-                        </div>
+                        <div id="adultsContainer"></div>
                     </div>
 
-                    <div id="childrenAgeSection" style="margin-top: 1.5rem;">
+                    <div id="childrenAgeSection" style="margin-top: 1.5rem; display: none;">
                         <h3 style="margin-bottom: 1rem; color: var(--black);">Children Passenger Details</h3>
-                        <div class="guest-row">
-                            <div class="form-group">
-                                <label>Child 1 - Full Name (as per passport)</label>
-                                <input type="text" class="form-control" placeholder="Full name">
-                            </div>
-                            <div class="form-group">
-                                <label>Age (2-12 years)</label>
-                                <input type="number" class="form-control" min="2" max="12" placeholder="Age">
-                            </div>
-                        </div>
+                        <div id="childrenContainer"></div>
                     </div>
 
                     <!-- Flight Details -->
@@ -538,9 +520,9 @@
 
                     <!-- Submit Section -->
                     <div class="submit-section">
-                        <a href="payment.html" class="btn btn-primary" style="padding: 1.2rem 3rem; font-size: 1.1rem;">
+                        <button type="button" onclick="proceedToPayment()" class="btn btn-primary" style="padding: 1.2rem 3rem; font-size: 1.1rem;">
                             Proceed to Payment
-                        </a>
+                        </button>
                         <p style="color: var(--text-gray); margin-top: 1rem;">
                             Secure payment gateway | 100% safe & encrypted
                         </p>
@@ -586,6 +568,19 @@
     </footer>
 
     <script>
+        // Get package details from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const packageName = urlParams.get('package') || 'Dubai Luxury Escape';
+        const packagePrice = parseInt(urlParams.get('price')) || 200000;
+
+        // Update page header with package name
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookingHeader = document.querySelector('.booking-header p');
+            if (bookingHeader) {
+                bookingHeader.textContent = `Book your complete travel package with flights - ${packageName}`;
+            }
+        });
+
         // Vehicle Type Price Calculator
         const vehicleTypeSelect = document.getElementById('vehicleType');
         const vehiclePriceInfo = document.getElementById('vehiclePriceInfo');
@@ -602,6 +597,117 @@
                 vehiclePriceInfo.style.display = 'none';
             }
         });
+
+        // Dynamic Traveler Form Generation
+        const numAdultsInput = document.getElementById('numAdults');
+        const numChildrenInput = document.getElementById('numChildren');
+        const adultsContainer = document.getElementById('adultsContainer');
+        const childrenContainer = document.getElementById('childrenContainer');
+        const childrenAgeSection = document.getElementById('childrenAgeSection');
+
+        // Generate adult fields
+        function generateAdultFields() {
+            const numAdults = parseInt(numAdultsInput.value) || 1;
+            adultsContainer.innerHTML = '';
+
+            for (let i = 1; i <= numAdults; i++) {
+                const adultRow = document.createElement('div');
+                adultRow.className = 'guest-row';
+                adultRow.style.marginBottom = '1rem';
+                adultRow.innerHTML = `
+                    <div class="form-group">
+                        <label>Adult ${i} - Full Name (as per passport) *</label>
+                        <input type="text" name="adult${i}Name" class="form-control" placeholder="Full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Age (Above 12 years) *</label>
+                        <input type="number" name="adult${i}Age" class="form-control" min="13" placeholder="Age" required>
+                    </div>
+                `;
+                adultsContainer.appendChild(adultRow);
+            }
+        }
+
+        // Generate children fields
+        function generateChildrenFields() {
+            const numChildren = parseInt(numChildrenInput.value) || 0;
+            childrenContainer.innerHTML = '';
+
+            if (numChildren > 0) {
+                childrenAgeSection.style.display = 'block';
+                for (let i = 1; i <= numChildren; i++) {
+                    const childRow = document.createElement('div');
+                    childRow.className = 'guest-row';
+                    childRow.style.marginBottom = '1rem';
+                    childRow.innerHTML = `
+                        <div class="form-group">
+                            <label>Child ${i} - Full Name (as per passport) *</label>
+                            <input type="text" name="child${i}Name" class="form-control" placeholder="Full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Age (2-12 years) *</label>
+                            <input type="number" name="child${i}Age" class="form-control" min="2" max="12" placeholder="Age" required>
+                        </div>
+                    `;
+                    childrenContainer.appendChild(childRow);
+                }
+            } else {
+                childrenAgeSection.style.display = 'none';
+            }
+        }
+
+        // Event listeners
+        numAdultsInput.addEventListener('input', generateAdultFields);
+        numChildrenInput.addEventListener('input', generateChildrenFields);
+
+        // Initialize forms on page load
+        generateAdultFields();
+        generateChildrenFields();
+
+        // Proceed to Payment Function
+        function proceedToPayment() {
+            // Get guest details
+            const form = document.getElementById('bookingForm');
+            const guestName = form.querySelector('input[type="text"]').value;
+            const guestEmail = form.querySelector('input[type="email"]').value;
+            const guestPhone = form.querySelector('input[type="tel"]').value;
+
+            // Validate required fields
+            if (!guestName || !guestEmail || !guestPhone) {
+                alert('Please fill in all required guest details (Name, Email, Phone)');
+                return;
+            }
+
+            // Get form data
+            const numAdults = parseInt(document.getElementById('numAdults').value) || 1;
+            const numChildren = parseInt(document.getElementById('numChildren').value) || 0;
+
+            // Get selected vehicle price
+            const vehicleSelect = document.getElementById('vehicleType');
+            const vehiclePrice = parseInt(vehicleSelect.options[vehicleSelect.selectedIndex].getAttribute('data-price')) || 0;
+
+            // Store guest details
+            localStorage.setItem('guestName', guestName);
+            localStorage.setItem('guestEmail', guestEmail);
+            localStorage.setItem('guestPhone', guestPhone);
+
+            // Create booking data object
+            const bookingData = {
+                packageType: 'with-flight',
+                packageName: packageName,
+                numAdults: numAdults,
+                numChildren: numChildren,
+                vehiclePrice: vehiclePrice,
+                basePrice: packagePrice, // Use the actual package price from URL
+                timestamp: new Date().toISOString()
+            };
+
+            // Store in localStorage
+            localStorage.setItem('bookingData', JSON.stringify(bookingData));
+
+            // Navigate to payment page
+            window.location.href = 'payment.html';
+        }
     </script>
 </body>
 </html>
